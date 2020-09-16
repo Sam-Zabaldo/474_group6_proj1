@@ -1,0 +1,72 @@
+#gameBoard{
+    width: 800px;    
+    height: 600px;
+    border-style:solid;
+    border-width:1px;
+    border-color:black;
+    margin:0;
+    padding:0;
+}
+#playBoard{
+    width: 800px;    
+    height: 540px;
+    border-style:solid;
+    border-width:1px;
+    background-color: rgb(37, 117, 37);
+    border-color:black;
+    margin:0;
+    padding:0;
+}
+
+#infoBoard{
+    position: fixed;
+    height: 60px;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+     
+}
+.infoElements{
+    height: 60px;
+    width: 200px;
+    text-align: center;
+
+}
+#gunBox{
+    position: absolute;
+    background-color: rebeccapurple;
+    margin-top: 340px;
+    margin-bottom: 60px;
+    margin-left: 300px;
+    margin-right: 300px;
+    height: 200px;
+    width: 200px;
+}
+#score{
+    
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+     
+}
+#ammo{
+    
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+     
+}
+#gameTitle{
+  
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+     
+}
+#roundNumber{
+ 
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}

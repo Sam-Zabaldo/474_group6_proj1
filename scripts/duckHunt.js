@@ -34,8 +34,9 @@ var player = function(){
     this.setPostion=function(xPos, yPos){
         //Implement Crosshair wiggle, recoil?
     }
-    this.fireGun = function(){
+    this.fireGun = function(xPos, yPos){
         //Handles firing gun logic
+        console.log("in fireGun");
     }
 
 }

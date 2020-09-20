@@ -37,6 +37,7 @@ var player = function(){
     this.fireGun = function(xPos, yPos){
         //Handles firing gun logic
         console.log("in fireGun");
+        
     }
 
 }

@@ -7,6 +7,9 @@ var duckHuntScene = function(){
         round:0
         
     }
+    this.initialize = function(){
+
+    }
     this.player = new player();
     this.initialize();
 
@@ -24,6 +27,10 @@ var player = function(){
     this.ammo = 6;
     this.canShoot = true;
 
+    this.initialize = function(){
+
+    }
+
     this.setPostion=function(xPos, yPos){
         //Implement Crosshair wiggle, recoil?
     }
@@ -37,6 +44,10 @@ var target = function(targetType){
     this.xPos = 0;
     this.yPos = 0;
     this.type = targetType;
+
+    this.initialize = function(){
+
+    }
 
     this.setPostion = function(xPos,yPos ){
         //TODO

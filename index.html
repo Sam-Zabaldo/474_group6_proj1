@@ -1,8 +1,12 @@
 <!DOCTYPE html>
     <head>
         <link rel="stylesheet" href="duckHunt.css" type="text/css">
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type='text/javascript' src="scripts/duckHunt.js"></script>
+        <script type='text/javascript' src="scripts/duckHuntUI.js"></script>
     </head>
-
+    
     <body>
         <div id="mainContent">
             <div id="gameBoard">
@@ -30,7 +34,11 @@
 
             </div>
         </div>
-
+        <script type="text/javascript">
+            $(function(){
+               var dh=new duckHuntUI(); 
+            });
+        </script>
 
     </body>
 

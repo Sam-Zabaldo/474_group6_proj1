@@ -51,14 +51,14 @@ body{
     right: 600px;
     position: absolute;
     width: 90px;
+    transform: scaleX(1);
 }
 #gooseRight{
     position: absolute;
     width: 90px;
+    right: 0px;
     margin-top: 220px;
     margin-bottom: 220px;
-    margin-left: 690px;
-    margin-right: 50px;
 
 }
 

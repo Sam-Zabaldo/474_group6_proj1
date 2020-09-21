@@ -12,6 +12,7 @@ var duckHuntScene = function(){
    
     this.player = new player(this);
     this.exampleDuck = new target();
+    this.exampleDuck.addTestTarget();
    
 
 
@@ -74,10 +75,13 @@ var player = function(game){
         }
          
     }
-    this.fireGun = function(){
+    this.fireGun = function(birdX, birdY, fireX, fireY){
         //Handles firing gun logic
-        console.log("in fireGun");
-        
+        //console.log("in fireGun");
+        if(fireX >= birdX+10 && fireX <= birdX+80 && fireY >= birdY+10
+            && fireY <= birdY+60){
+                console.log("bird hit!");
+            }
     }
 
 }
@@ -85,8 +89,8 @@ var target = function(){
     var self = this;
     this.angle = 0;
     this.speed = 0;
-    this.xPos = 0;
-    this.yPos = 0;
+    this.xPos = 250;
+    this.yPos = 250;
     this.type = "None";
 
     this.setTargetType = function(type){
@@ -104,6 +108,14 @@ var target = function(){
         var distance=self.speed*time;
         self.yPos=self.yPos+Math.sin(self.angle)*distance;
         self.xPos=self.xPos+Math.cos(self.angle)*distance;
+    }
+
+    this.addTestTarget = function(){
+        var playBoard = document.getElementById("playBoard");
+        var img = document.createElement("img");
+        img.id = "testTarget";
+        img.src = "./images/animated-goose-image-left-right.gif";
+        playBoard.appendChild(img);
     }
    
 }

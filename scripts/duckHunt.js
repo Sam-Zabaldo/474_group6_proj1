@@ -7,6 +7,9 @@ var duckHuntScene = function(){
         round:0
         
     }
+    this.initialize = function(){
+
+    }
     this.player = new player();
     this.exampleDuck = new target();
     this.initialize();
@@ -28,6 +31,10 @@ var player = function(){
     this.height = 50;
     this.canShoot = true;
 
+    this.initialize = function(){
+
+    }
+
     this.setPostion=function(xPos, yPos){
         //Implement Crosshair wiggle, recoil?
     }
@@ -36,6 +43,8 @@ var player = function(){
     }
     this.fireGun = function(){
         //Handles firing gun logic
+        console.log("in fireGun");
+        
     }
 
 }

@@ -5,6 +5,11 @@ var duckHuntUI=function(){
     this.coordinateOffset = 10;
     this.initialize=function(){
         self.game = new duckHuntScene();
+
+        //runs function that moves objects
+        manageTarget(0);
+        manageTarget(1);
+            
         $('body').mousemove(function(event){
             // 25 comes from width or height of crosshair divided by 2, should call player.getHeight() ect. 
             var x = event.pageX - self.game.player.width/2;
@@ -22,7 +27,9 @@ var duckHuntUI=function(){
         $("body").mousedown(function(e){
             console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
             self.game.player.fireGun(e.clientX, e.clientY);
-            $('#gunImage').attr("src", "./images/gun-fire.png")
+            $('#ammo').text(self.game.player.ammo);
+            $('#gunImage').attr("src", "./images/gun-fire.png");
+
             setTimeout(function(){
                 $('#gunImage').attr("src", "./images/gun.png") 
             },100);
@@ -43,9 +50,34 @@ var duckHuntUI=function(){
         }
         return angle;
     };
-  
+
+
+    //funciton that takes in an index and moves the target object from the list of targets in the scene
+    function manageTarget(index){
+        setInterval(moveTarget, 10)
+        function moveTarget() {
+            var jqName = self.game.list[index].jqName();  
+            self.game.list[index].updatePosition();
+            $(jqName).css("left", self.game.list[index].xPos);
+            if(self.game.list[index].direction == "left"){
+                $(jqName).css("transform", "scaleX(-1)");
+            }
+            else{
+                $(jqName).css("transform", "scaleX(1)");
+            }
+    
+        }
+    }
+    
+
+
+
+   
+
    this.initialize(); 
 }
+
+
 /*
 $(document).ready(function(){
     console.log("Document Ready")

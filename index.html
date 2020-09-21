@@ -1,43 +1,56 @@
 <!DOCTYPE html>
-    <head>
-        <link rel="stylesheet" href="duckHunt.css" type="text/css">
-    </head>
 
-    <body>
-        <div id="mainContent">
-            <div id="gameBoard">
-                <div id="playBoard">
-                    <img id="gooseRight" src = "./images/animated-goose-image-left-right.gif">
-                        
-                </img>
-                    <img id="eagle" src = "./images/eagle.gif">
-                    </img>
-                    <div id="crossHair" class="image">
-                    </div>
-                    <img id="gunBox" src ='./images/gun.png'/>
-                </img>
-                </div>
-                <div id="infoBoard">
-                    <div id="score" class=infoElements>
-                        Score: 5
-                    </div>
-                    <div id="ammo" class=infoElements>
-                        Ammo: 6
-                    </div>
-                    <div id="gameTitle" class=infoElements>
-                        DUCK HUNT
-                    </div>
-                    <div id="roundNumber" class=infoElements>
-                        ROUND 1
-                    </div>
-                </div>
-           
-                
+<head>
+    <link rel="stylesheet" href="duckHunt.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='./duckHunt.js'></script>
+    <script type='text/javascript' src='./duckHuntUI.js'></script>
+</head>
 
+<body>
+    <div id="mainContent">
+        <div id="gameBoard">
+            <div id="playBoard">
+                <img id="gooseRight" src="./images/animated-goose-image-left-right.gif">
+
+                </img>
+                <img id="eagle" src="./images/eagle.gif">
+                </img>
+                <div id="crossHair" class="image">
+                </div>
+
+                <div id="gunBox">
+                    <img id="gunImage" src='./images/gun.png' />
+                </div>
+            </div>
+        </div>
+        <div id="infoBoard">
+            <div id="score" class=infoElements>
+                Score: 5
+            </div>
+            <div id="ammo" class=infoElements>
+                Ammo: 6
+            </div>
+            <div id="gameTitle" class=infoElements>
+                DUCK HUNT
+            </div>
+            <div id="roundNumber" class=infoElements>
+                ROUND 1
             </div>
         </div>
 
 
-    </body>
+
+    </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var ui = new duckHuntUI();
+        });
+    </script>
+
+
+</body>
 
 </html>

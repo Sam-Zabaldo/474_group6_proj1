@@ -8,6 +8,7 @@
     padding:0;
 }
 #playBoard{
+    position: relative;
     width: 800px;    
     height: 540px;
     border-style:solid;
@@ -35,15 +36,40 @@
     text-align: center;
 
 }
+#eagle{
+    right: 600px;
+    position: absolute;
+    width: 90px;
+}
+#gooseRight{
+    position: absolute;
+    width: 90px;
+    margin-top: 220px;
+    margin-bottom: 220px;
+    margin-left: 690px;
+    margin-right: 50px;
+
+}
+
+
+#crossHair{
+    top: 245px;
+    right: 375px;
+    position: absolute;
+    background:url('./images/crosshair.png');
+    background-size: 100%;
+    height: 50px;
+    width: 50px;
+
+
+}
 #gunBox{
     position: absolute;
-    background-color: rebeccapurple;
     margin-top: 340px;
     margin-bottom: 60px;
     margin-left: 300px;
     margin-right: 300px;
     height: 200px;
-    width: 200px;
 }
 #score{
     

@@ -12,6 +12,7 @@ var duckHuntScene = function(){
    
     this.player = new player(this);
     this.exampleDuck = new target();
+    this.geese
    
 
 
@@ -86,6 +87,8 @@ var target = function(){
     this.angle = 0;
     this.speed = 0;
     this.xPos = 0;
+    this.height = 0;
+    this.width = 0;
     this.yPos = 0;
     this.type = "None";
 

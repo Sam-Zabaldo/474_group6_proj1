@@ -1,3 +1,10 @@
+body{
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
 #gameBoard{
     width: 800px;    
     height: 600px;

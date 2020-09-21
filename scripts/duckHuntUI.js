@@ -26,12 +26,30 @@ var duckHuntUI=function(){
 
         });
         $("body").mousedown(function(e){
-            console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
-            self.game.player.fireGun(e.clientX, e.clientY);
-            $('#gunImage').attr("src", "./images/gun-fire.png")
-            setTimeout(function(){
-                $('#gunImage').attr("src", "./images/gun.png") 
-            },100);
+            if (self.game.player.canShoot){
+                $('#gunshot').trigger("play");
+                $('#gunshot').prop("currentTime", 0);
+                self.game.player.canShoot = false;
+                console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
+                self.game.player.fireGun(e.clientX, e.clientY);
+
+                $('#gunImage').attr("src", "./images/gun-fire.png")
+                setTimeout(function(){
+                    $('#gunImage').attr("src", "./images/gun.png") 
+                },100);
+
+                setTimeout(function(){
+                    $('#reload').trigger("play");
+                    $('#reload').prop("currentTime", 0);
+                    setTimeout(function(){
+                        self.game.player.canShoot = true; 
+                    },700);
+                       
+                },1000);
+            }
+           
+
+         
         });
 
     }
@@ -44,7 +62,7 @@ var duckHuntUI=function(){
         if (angle > 45){
             angle = 45
         }
-        else if(angle < -45){
+        else if(angle < - 45){
             angle = - 45;
         }
         return angle;

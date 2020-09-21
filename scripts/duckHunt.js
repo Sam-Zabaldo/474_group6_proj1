@@ -9,6 +9,7 @@ var duckHuntScene = function(){
     this.initialize = function(){
 
     }
+   
     this.player = new player(this);
     this.exampleDuck = new target();
    
@@ -24,7 +25,10 @@ var duckHuntScene = function(){
 var player = function(game){
     var self=this;
     this.game = game;
-    this.maxCrossHairDif = 15;
+    this.crossHairRadius = 15;
+    self.currentDegree = 5;
+    this.xCrossHairOff = 0;
+    this.yCrossHairOff = 0;
     this.xPos = 500;
     this.yPos = 500;
     this.ammo = 6;
@@ -39,9 +43,23 @@ var player = function(game){
     this.setPostion=function(xPos, yPos){
         //Implement Crosshair wiggle, recoil?
     }
+    this.randomizeCrossHairLocation = function(){
+        self.xCrossHairOff = Math.round(self.crossHairRadius*Math.cos(self.currentDegree * Math.PI /180));
+        self.yCrossHairOff = Math.round(self.crossHairRadius*Math.sin(self.currentDegree* Math.PI /180));
+        this.currentDegree = this.currentDegree + 15;
+
+    }
+
     this.updatePosition= function(xPos, yPos){
-        this.xPos = xPos;
-        this.yPos = yPos;
+        
+        self.xPos = xPos;
+        self.yPos = yPos;
+        /*
+        self.xPos = self.xPos + Math.floor(self.crossHairRadius*Math.cos(self.currentDegree * Math.PI /180));
+        self.yPos = self.yPos + Math.floor(self.crossHairRadius*Math.sin(self.currentDegree* Math.PI /180));
+        this.currentDegree = this.currentDegree + 20;
+        */
+
         if (xPos > self.game.width - self.game.coordinateOffset){
             this.xPos = self.game.width - self.game.coordinateOffset;
         }

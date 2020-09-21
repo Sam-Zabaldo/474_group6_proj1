@@ -5,6 +5,13 @@ var duckHuntUI=function(){
     this.coordinateOffset = 10;
     this.initialize=function(){
         self.game = new duckHuntScene();
+
+        window.setInterval(function(){
+            self.game.player.randomizeCrossHairLocation();
+            $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
+            $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
+        },30);
+
         $('body').mousemove(function(event){
             // 25 comes from width or height of crosshair divided by 2, should call player.getHeight() ect. 
             var x = event.pageX - self.game.player.width/2;
@@ -14,8 +21,7 @@ var duckHuntUI=function(){
             //Moving crossHair logic should be handled in duckHunt.js
             //Just doing it right here for now
             self.game.player.updatePosition(x,y);
-            $('#crossHair').css("top", self.game.player.yPos - self.coordinateOffset );
-            $('#crossHair').css("left", self.game.player.xPos - self.coordinateOffset);
+           
             $('#gunBox').css("transform","rotate("+ angle + "deg)" );
 
         });

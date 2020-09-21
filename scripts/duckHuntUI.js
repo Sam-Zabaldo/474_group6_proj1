@@ -4,20 +4,30 @@ var duckHuntUI=function(){
     this.running = true;
     this.coordinateOffset = 10;
     this.initialize=function(){
-        
-        //self.game = new duckHuntScene();
+        self.game = new duckHuntScene();
         $('body').mousemove(function(event){
             // 25 comes from width or height of crosshair divided by 2, should call player.getHeight() ect. 
-            var x = event.pageX - 25;
-            var y = event.pageY - 25;
+            var x = event.pageX - self.game.player.width/2;
+            var y = event.pageY - self.game.player.height/2;
             angle = self.calculateGunAngle(x,y);
+
             //Moving crossHair logic should be handled in duckHunt.js
             //Just doing it right here for now
-            $('#crossHair').css("top", y - self.coordinateOffset );
-            $('#crossHair').css("left", x - self.coordinateOffset);
+            self.game.player.updatePosition(x,y);
+            $('#crossHair').css("top", self.game.player.yPos - self.coordinateOffset );
+            $('#crossHair').css("left", self.game.player.xPos - self.coordinateOffset);
             $('#gunBox').css("transform","rotate("+ angle + "deg)" );
 
         });
+        $("body").mousedown(function(e){
+            console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
+            self.game.player.fireGun(e.clientX, e.clientY);
+            $('#gunImage').attr("src", "./images/gun-fire.png")
+            setTimeout(function(){
+                $('#gunImage').attr("src", "./images/gun.png") 
+            },100);
+        });
+
     }
     this.calculateGunAngle = function(xMouse, yMouse){
         var opposite = 400 - xMouse;

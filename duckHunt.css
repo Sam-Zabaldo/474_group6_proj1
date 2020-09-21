@@ -8,6 +8,7 @@
     padding:0;
 }
 #playBoard{
+    cursor: none;
     position: relative;
     width: 800px;    
     height: 540px;

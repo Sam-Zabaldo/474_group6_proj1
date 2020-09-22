@@ -16,6 +16,9 @@ var duckHuntScene = function(){
     //this.geese
    
 
+    
+    this.list = [new target("eagle", 0, "right"), 
+                 new target("gooseRight", 700, "left")];
 
     this.reset=function(){
         self.score=0;
@@ -85,32 +88,50 @@ var player = function(game){
             }
     }
 
+    
+
 }
-var target = function(){
+var target = function(name, startPos, direction){
     var self = this;
-    this.angle = 0;
-    this.speed = 0;
-    this.xPos = 0;
-    this.height = 0;
-    this.width = 0;
+    this.name = name;
+    this.speed = 1;
+    this.xPos = startPos;
     this.yPos = 0;
     this.type = "None";
+
+    this.direction = direction
 
     this.setTargetType = function(type){
         this.type = type;
     }
-    this.setTrajectory = function(angle, speed){
-        this.angle = angle;
-        this.speed = speed;
+
+    this.setTargetName= function(name){
+        this.name = name;
     }
+
+    this.jqName = function(){
+        return ("#" + this.name); 
+    }
+    
     this.setPostion = function(xPos,yPos ){
         self.xPos = xPos;
         self.yPos = yPos;
     }
-    this.updatePosition = function(time){
-        var distance=self.speed*time;
-        self.yPos=self.yPos+Math.sin(self.angle)*distance;
-        self.xPos=self.xPos+Math.cos(self.angle)*distance;
+    this.updatePosition = function(){
+        //var distance=self.speed*time;
+        if (this.direction == "right"){
+            self.xPos=self.xPos+5;
+            if(self.xPos == 700){
+                this.direction = "left"
+            }
+        }
+        else if(this.direction =="left"){
+            self.xPos = self.xPos -5;
+            if(self.xPos == 0){
+                this.direction = "right";
+            }
+        }
+        
     }
 
     this.addTestTarget = function(){
@@ -122,3 +143,5 @@ var target = function(){
     }
    
 }
+
+

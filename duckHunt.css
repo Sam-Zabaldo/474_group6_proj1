@@ -6,6 +6,10 @@ body{
     -o-user-select: none;
 }
 
+button {
+    display: block;
+}
+
 #menuLayer{
     width: 800px;    
     height: 620px;

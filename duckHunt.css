@@ -5,6 +5,29 @@ body{
     -webkit-user-select: none;
     -o-user-select: none;
 }
+
+#menuLayer{
+    width: 800px;    
+    height: 620px;
+    border-style:solid;
+    border-width:1px;
+    border-color:black;
+    margin:0;
+    padding:0;
+    z-index: 99;
+    position: absolute;
+}
+
+#mainMenu{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
 #gameBoard{
     width: 800px;    
     height: 600px;
@@ -13,6 +36,7 @@ body{
     border-color:black;
     margin:0;
     padding:0;
+    z-index: 0;
 }
 #playBoard{
     cursor: none;
@@ -27,6 +51,7 @@ body{
     border-color:black;
     margin:0;
     padding:0;
+    
 }
 
 #infoBoard{
@@ -38,6 +63,7 @@ body{
     background-color: salmon;
     flex-direction: row;
     justify-content: space-evenly;
+    z-index: 0;
      
 }
 .infoElements{

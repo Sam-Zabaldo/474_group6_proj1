@@ -10,24 +10,19 @@ var duckHuntUI=function(){
             self.game.player.randomizeCrossHairLocation();
             $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
             $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
-        },30);
+            moveTarget(0);
+            moveTarget(1);
+        },10);
 
         //runs function that moves objects
-        manageTarget(0);
-        manageTarget(1);
+    
             
         $('body').mousemove(function(event){
-            // 25 comes from width or height of crosshair divided by 2, should call player.getHeight() ect. 
             var x = event.pageX - self.game.player.width/2;
             var y = event.pageY - self.game.player.height/2;
             angle = self.calculateGunAngle(x,y);
-
-            //Moving crossHair logic should be handled in duckHunt.js
-            //Just doing it right here for now
             self.game.player.updatePosition(x,y);
-            $('#crossHair').css("top", self.game.player.yPos - self.coordinateOffset );
-            $('#crossHair').css("left", self.game.player.xPos - self.coordinateOffset);
-            $('#gunBox').css("transform","rotate("+ angle + "deg)" );
+            $('#gunBox').css("transform","rotate("+ angle + "deg)");
 
         });
         $("body").mousedown(function(e){
@@ -42,7 +37,7 @@ var duckHuntUI=function(){
                 //alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
                 //self.game.player.fireGun(rect.left, rect.top, e.clientX, e.clientY);
 
-                self.game.player.fireGun(e.clientX, e.clientY);
+                self.game.player.fireGun();
                 $('#ammo').text(self.game.player.ammo);
                 $('#gunImage').attr("src", "./images/gun-fire.png")
                 setTimeout(function(){
@@ -78,9 +73,8 @@ var duckHuntUI=function(){
 
 
     //funciton that takes in an index and moves the target object from the list of targets in the scene
-    function manageTarget(index){
-        setInterval(moveTarget, 10)
-        function moveTarget() {
+   
+        function moveTarget(index) {
             var jqName = self.game.list[index].jqName();  
             self.game.list[index].updatePosition();
             $(jqName).css("left", self.game.list[index].xPos);
@@ -92,7 +86,7 @@ var duckHuntUI=function(){
             }
     
         }
-    }
+
     
 
 

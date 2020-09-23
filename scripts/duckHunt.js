@@ -47,7 +47,7 @@ var player = function(game){
     this.randomizeCrossHairLocation = function(){
         self.xCrossHairOff = Math.round(self.crossHairRadius*Math.cos(self.currentDegree * Math.PI /180));
         self.yCrossHairOff = Math.round(self.crossHairRadius*Math.sin(self.currentDegree* Math.PI /180));
-        this.currentDegree = this.currentDegree + 15;
+        this.currentDegree = this.currentDegree + 5;
 
     }
 
@@ -84,8 +84,9 @@ var player = function(game){
             }
     } */
 
-    this.fireGun = function(fireX, fireY){
-
+    this.fireGun = function(){
+        var crossHairLocX = self.xPos + self.xCrossHairOff;
+        var crossHairLocY = self.yPos + self.yCrossHairOff;
         var len = self.game.list.length;
         for(let i = 0; i < len; i++){
             var id = self.game.list[i].getName();
@@ -94,7 +95,7 @@ var player = function(game){
             birdX = rect.left;
             birdY = rect.top;
             console.log("birdX: " + birdX + " birdY: " + birdY);
-            if(fireX >= birdX && fireX <= birdX+100 && fireY >= birdY && fireY <= birdY+100){
+            if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
                 alert("Bird Hit!");
             }
         }

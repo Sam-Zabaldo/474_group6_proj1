@@ -11,11 +11,7 @@ var duckHuntScene = function(){
     }
    
     this.player = new player(this);
-    this.exampleDuck = new target();
-    this.exampleDuck.addTestTarget();
-    //this.geese
    
-
     
     this.list = [new target("eagle", 0, "right"), 
                  new target("gooseRight", 700, "left")];
@@ -79,13 +75,29 @@ var player = function(game){
         }
          
     }
-    this.fireGun = function(birdX, birdY, fireX, fireY){
+    /* this.fireGun = function(birdX, birdY, fireX, fireY){
         //Handles firing gun logic
         //console.log("in fireGun");
-        if(fireX >= birdX+10 && fireX <= birdX+80 && fireY >= birdY+10
+        if(fireX >= birdX+10 && fireX <= birdX+80 && fireY >= birdY+10)
             && fireY <= birdY+60){
                 console.log("bird hit!");
             }
+    } */
+
+    this.fireGun = function(fireX, fireY){
+
+        var len = self.game.list.length;
+        for(let i = 0; i < len; i++){
+            var id = self.game.list[i].getName();
+            var div = document.getElementById(id);
+            var rect = div.getBoundingClientRect();
+            birdX = rect.left;
+            birdY = rect.top;
+            console.log("birdX: " + birdX + " birdY: " + birdY);
+            if(fireX >= birdX && fireX <= birdX+100 && fireY >= birdY && fireY <= birdY+100){
+                alert("Bird Hit!");
+            }
+        }
     }
 
     
@@ -107,6 +119,11 @@ var target = function(name, startPos, direction){
 
     this.setTargetName= function(name){
         this.name = name;
+    }
+
+
+    this.getName = function(){
+        return this.name;
     }
 
     this.jqName = function(){
@@ -132,14 +149,6 @@ var target = function(name, startPos, direction){
             }
         }
         
-    }
-
-    this.addTestTarget = function(){
-        var playBoard = document.getElementById("playBoard");
-        var img = document.createElement("img");
-        img.id = "testTarget";
-        img.src = "./images/animated-goose-image-left-right.gif";
-        playBoard.appendChild(img);
     }
    
 }

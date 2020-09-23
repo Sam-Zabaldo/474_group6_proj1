@@ -37,10 +37,12 @@ var duckHuntUI=function(){
                 $('#gunshot').prop("currentTime", 0);
                 self.game.player.canShoot = false;
                 console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
-                var div = document.getElementById("testTarget");
-                var rect = div.getBoundingClientRect();
+                //var div = document.getElementById("testTarget");
+                //var rect = div.getBoundingClientRect();
                 //alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
-                self.game.player.fireGun(rect.left, rect.top, e.clientX, e.clientY);
+                //self.game.player.fireGun(rect.left, rect.top, e.clientX, e.clientY);
+
+                self.game.player.fireGun(e.clientX, e.clientY);
                 $('#ammo').text(self.game.player.ammo);
                 $('#gunImage').attr("src", "./images/gun-fire.png")
                 setTimeout(function(){

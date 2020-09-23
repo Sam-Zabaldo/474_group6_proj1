@@ -12,7 +12,7 @@ var duckHuntUI=function(){
             $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
             moveTarget(0);
             moveTarget(1);
-        },10);
+        },20);
 
         //runs function that moves objects
     

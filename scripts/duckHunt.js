@@ -96,7 +96,12 @@ var player = function(game){
             birdY = rect.top;
             console.log("birdX: " + birdX + " birdY: " + birdY);
             if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
-                alert("Bird Hit!");
+                setTimeout(function(){
+                    $('#honk').trigger("play");
+                    $('#honk').prop("currentTime", 0);
+                    console.log("HIT");
+                },300);
+               
             }
         }
     }

@@ -1,3 +1,5 @@
+
+
 body{
     user-select: none;
     -moz-user-select: none;
@@ -39,6 +41,9 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
      
+}
+.hiddenAudio{
+    display: none;
 }
 .infoElements{
     height: 60px;

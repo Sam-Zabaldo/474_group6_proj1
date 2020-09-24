@@ -37,29 +37,25 @@ body{
 
 #eagle{
     right: 600px;
+    top: 300px;
     position: absolute;
     width: 90px;
     transform: scaleX(1);
 }
 #gooseRight{
+    right: 300px;
+    top: 200px;
     position: absolute;
     width: 90px;
-    right: 0px;
-    margin-top: 220px;
-    margin-bottom: 220px;
+    transform: scaleX(1);
 }
-
-#testTarget{
+#gooseRight{
+    right: 300px;
+    top: 200px;
     position: absolute;
     width: 90px;
-    margin-top: 220px;
-    margin-bottom: 220px;
-    margin-left: 50px;
-    margin-right: 500px;
-    z-index: 1;
+    transform: scaleX(1);
 }
-
-
 #crossHair{
     top: 245px;
     left: 375px;

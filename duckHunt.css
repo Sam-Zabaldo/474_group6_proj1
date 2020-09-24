@@ -83,7 +83,7 @@ body{
 #infoBoard{
     border-style:solid;
     border-width:5px;
-    border-color:green;
+    border-color:#7fcf0e;
     margin:0;
     padding:0;
 
@@ -92,9 +92,9 @@ body{
     height: 80px;
     width: 801px;
     display: flex;
-    background-color: salmon;
+    background-color: #877000;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
      
 }
 
@@ -102,6 +102,7 @@ body{
     width: 100%;
 }
 #centerElements{
+    margin-top: 10px;
     height:75%;
     flex-direction: row;
     justify-content: space-between;
@@ -121,18 +122,21 @@ body{
 }
 
 #ammoBox{
+    margin-right: -;
     flex-direction: row;
     justify-content: space-evenly;
     justify-content: center;
     display: flex;
      
 }
-.ammonIcon{
-    height: 50%;
+.ammoIcon{
+    margin: 2px;
+    height: 90%;
     width: auto;
 }
 
 #roundNumber{
+    color: white;
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: large;
     justify-content: center;
@@ -142,11 +146,15 @@ body{
 
 
 #pauseButton{
-    background-color: #4CAF50; /* Green */
+    background-color: #7fcf0e; /* Green */
     border: none;
+    border-radius: 10px;
+    margin-top: 8px;
     color: white;
+    height:80%;
     padding: 15px 32px;
     text-align: center;
+    font-family: "Arial Black", Gadget, sans-serif;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;

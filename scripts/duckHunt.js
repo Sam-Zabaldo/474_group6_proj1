@@ -47,7 +47,6 @@ var duckHuntScene = function(){
 }
 
 var player = function(game){
-    this.shotWhileReloading = false;
     this.reloading = false;
     var self=this;
     this.game = game;

@@ -38,14 +38,11 @@ var duckHuntUI=function(){
             
         });
         
-        $("body").mousedown(function(e){
+        $("#playBoard").mousedown(function(e){
             if (self.game.player.ammo == 0){
                 self.handleReload();
             }
             else if (self.game.player.canShoot && !self.game.player.reloading){
-                if (self.game.player.reloading){
-                    self.game.player.shotWhileReloading = true;
-                }
                 $('#gunshot').trigger("play");
                 $('#gunshot').prop("currentTime", 0);
                 self.game.player.canShoot = false;
@@ -126,7 +123,6 @@ var duckHuntUI=function(){
                     self.game.player.ammo += 1;
                     self.updateAmmoIcon(self.game.player.ammo);
                     if (self.game.player.ammo == 6){
-                        console.log("I set reloading to false " + i);
                         self.game.player.reloading = false; 
                     }
                 }, i *500);
@@ -150,9 +146,3 @@ var duckHuntUI=function(){
 }
 
 
-/*
-$(document).ready(function(){
-    console.log("Document Ready")
-    var ui = new duckHuntUI();
-});
-*/

@@ -18,6 +18,11 @@
     <audio id = honk class="hiddenAudio"
         src="./audio/honk.mp3">
     </audio>
+    <audio id = chambering class="hiddenAudio"
+        src="./audio/chambering.mp3">
+    </audio>
+    
+
 
     <div id="mainContent">
         <div id="gameBoard">
@@ -36,18 +41,28 @@
             </div>
         </div>
         <div id="infoBoard">
-            <div id="score" class=infoElements>
-                Score: 5
+            <div id= "roundNumber">
+                Round 6
             </div>
-            <div id="ammo" class=infoElements>
-                6
+            <div id="centerElements">
+                <div id="xBox">
+                    <img id="x1" class="x" src ="./images/x-red.png" />
+                    <img id="x2" class="x" src ="./images/x-gray.png" />
+                    <img id="x3" class="x" src ="./images/x-gray.png" />
+                </div>
+                <div id="ammoBox">
+                    <img id="ammo1" class="ammoIcon" src ="./images/ammo-crop.png" />
+                    <img id="ammo2" class="ammoIcon" src ="./images/ammo-crop.png" />
+                    <img id="ammo3" class="ammoIcon"src ="./images/ammo-crop.png" />
+                    <img id="ammo4" class="ammoIcon"  src ="./images/ammo-crop.png"/>
+                    <img id="ammo5" class="ammoIcon"  src ="./images/ammo-crop.png"/>
+                    <img id="ammo6" class="ammoIcon" src ="./images/ammo-crop.png" />
+                </div>
             </div>
-            <div id="gameTitle" class=infoElements>
-                DUCK HUNT
-            </div>
-            <div id="roundNumber" class=infoElements>
-                ROUND 1
-            </div>
+            
+            
+            <button type="button" id = "pauseButton">Pause</button>
+           
         </div>
 
 

@@ -1,5 +1,4 @@
 
-
 body{
     user-select: none;
     -moz-user-select: none;
@@ -7,6 +6,7 @@ body{
     -webkit-user-select: none;
     -o-user-select: none;
 }
+
 #gameBoard{
     width: 800px;    
     height: 600px;
@@ -22,7 +22,7 @@ body{
     width: 800px;    
     height: 540px;
     border-style:solid;
-    border-width:1px;
+    border-width:5px;
     background-image: url(images/duck_hunt_background.jpg);
     background-size: contain;
     background-color: rgb(37, 117, 37);
@@ -31,27 +31,10 @@ body{
     padding:0;
 }
 
-#infoBoard{
-    margin-top: -60px;
-    position: absolute;
-    height: 80px;
-    width: 800px;
-    display: flex;
-    background-color: salmon;
-    flex-direction: row;
-    justify-content: space-evenly;
-     
-}
 .hiddenAudio{
     display: none;
 }
-.infoElements{
-    height: 60px;
-    width: 200px;
-    text-align: center;
 
-
-}
 #eagle{
     right: 600px;
     position: absolute;
@@ -88,17 +71,7 @@ body{
     z-index: 2;
 
 }
-/*
-#gunBox {
-    transform: rotate(45deg);
-    position: absolute;
-    margin-top: 400px;
-    margin-bottom: 60px;
-    margin-left: 300px;
-    margin-right: 300px;
-    height: 200px;
-}
-*/
+
 #gunBox{
     position: absolute;
     transform: rotate(0deg);
@@ -108,33 +81,77 @@ body{
     margin-right: 300px;
     height: 400px;
 }
+
+
+
+#infoBoard{
+    border-style:solid;
+    border-width:5px;
+    border-color:green;
+    margin:0;
+    padding:0;
+
+    margin-top: -60px;
+    position: absolute;
+    height: 80px;
+    width: 801px;
+    display: flex;
+    background-color: salmon;
+    flex-direction: row;
+    justify-content: space-between;
+     
+}
+
 #gunImage{
     width: 100%;
 }
-#score{
-    
+#centerElements{
+    height:75%;
+    flex-direction: row;
+    justify-content: space-between;
     justify-content: center;
     display: flex;
-    flex-direction: column;
-     
 }
-#ammo{
-    
+#xBox{
+    flex-direction: row;
+    justify-content: space-evenly;
     justify-content: center;
     display: flex;
-    flex-direction: column;
      
 }
-#gameTitle{
-  
+.x{
+    width: 60px;
+    height: 60px;
+}
+
+#ammoBox{
+    flex-direction: row;
+    justify-content: space-evenly;
     justify-content: center;
     display: flex;
-    flex-direction: column;
      
 }
+.ammonIcon{
+    height: 50%;
+    width: auto;
+}
+
 #roundNumber{
- 
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: large;
     justify-content: center;
     display: flex;
     flex-direction: column;
+}
+
+
+#pauseButton{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

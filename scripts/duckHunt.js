@@ -24,6 +24,8 @@ var duckHuntScene = function(){
 }
 
 var player = function(game){
+    this.shotWhileReloading = false;
+    this.reloading = false;
     var self=this;
     this.game = game;
     this.crossHairRadius = 15;
@@ -39,6 +41,15 @@ var player = function(game){
 
     this.initialize = function(){
 
+    }
+    this.updateAmmo = function(num){
+        if (self.ammo + num > 6 || self.ammo + num < 0){
+            return false;
+        }
+        else{
+            self.ammo += num;
+            return true;
+        }
     }
 
     this.setPostion=function(xPos, yPos){
@@ -85,6 +96,8 @@ var player = function(game){
     } */
 
     this.fireGun = function(){
+        self.ammo -= 1;
+        console.log("Ammo: " + self.ammo);
         var crossHairLocX = self.xPos + self.xCrossHairOff;
         var crossHairLocY = self.yPos + self.yCrossHairOff;
         var len = self.game.list.length;

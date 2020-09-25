@@ -1,37 +1,43 @@
+var gameUI;
+var altUI;
+var adviceUI;
+
 
 //initializes the overall program
 var duckHuntControllerStart = function() {
-    var gameUI;
-    var altUI;
-    var advice;
 
-    $(normGameButton).click(function(){gameUI = new duckHuntUI ()});
+    $(normGameButton).click(function(){ duckHuntNormStart () });
+    $(altGameButton).click(function(){ duckHuntAltStart () });
+    $(aboutButton).click(function(){ duckHuntAdviceStart () });
+
+    duckHuntMenuStart();
 
 }
 
-
 //goes to menu mode
-var duckHuntMenuStart = function () {
+duckHuntMenuStart = function () {
 
+    console.log("Menu start");
 
 }
 
 //begins normal game
 var duckHuntNormStart = function () {
 
+    gameUI = new duckHuntUI ();
 
 }
 
 //begins alternate game if we want to do this
 var duckHuntAltStart = function () {
 
-    
+    altUI =  new duckHuntUI ();
 
 }
 
 //Displays instructions screen
-var duckHuntHelpStart = function () {
+var duckHuntAdviceStart = function () {
 
-    
+    alert("Advice");
 
 }

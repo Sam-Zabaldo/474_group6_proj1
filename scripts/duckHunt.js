@@ -7,15 +7,27 @@ var duckHuntScene = function(){
     this.coordinateOffset = 10;
  
     this.initialize = function(){
+        this.spawnTargets(3);
+    }
 
+    this.spawnTargets = function(numberTargets){
+        this.list = [];
+        var i;
+        for (i = 0; i < numberTargets; i++) {
+            this.newTarget();
+        }
     }
    
     this.player = new player(this);
+
+    this.list = [];
    
     
-    this.list = [new target("eagle", 0, "right"), 
-                 new target("gooseRight", 700, "left")];
+    //this.list = [new target("eagle", 0,0, "right"), 
+                // new target("gooseRight", 700,200, "left")];
 
+
+    //function that generates a target
     this.newTarget = function(){
         var birdNum = Math.floor((Math.random() * 2) + 1);
         var xLoc = Math.floor((Math.random() * 600));
@@ -27,15 +39,15 @@ var duckHuntScene = function(){
             name = "eagle"+this.list.length.toString()+"";
             img.id = name;
             img.src = './images/eagle.gif';
-            img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1);");
+            img.setAttribute("style", "right: "+"0"+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         } else if(birdNum == 2){
             name = "gooseRight"+this.list.length.toString()+"";
             img.id = name;
             img.src = './images/animated-goose-image-left-right.gif';
-            img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1);");
+            img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
-
-        this.list.push(new target(name, 0, "right"));
+        console.log(name);
+        this.list.push(new target(name, 0,yLoc, "right"));
         document.getElementById("playBoard").appendChild(img);
     }
 
@@ -125,32 +137,47 @@ var player = function(game){
         var len = self.game.list.length;
         console.log(this.list);
         for(let i = 0; i < len; i++){
-            var id = self.game.list[i].getName();
-            var div = document.getElementById(id);
-            var rect = div.getBoundingClientRect();
-            birdX = rect.left;
-            birdY = rect.top;
-            console.log("birdX: " + birdX + " birdY: " + birdY);
-            if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
-                self.game.newTarget();
-                setTimeout(function(){
-                    $('#honk').trigger("play");
-                    $('#honk').prop("currentTime", 0);
-                    console.log("HIT");
-                },300);
+            if(self.game.list[i] !== null){
+                var id = self.game.list[i].getName();
+                var div = document.getElementById(id);
+                var rect = div.getBoundingClientRect();
+                birdX = rect.left;
+                birdY = rect.top;
+                console.log("birdX: " + birdX + " birdY: " + birdY);
+                //console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
+                if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
+                    //self.game.newTarget();
+                    setTimeout(function(){
+                        $('#honk').trigger("play");
+                        $('#honk').prop("currentTime", 0);
+                        
+
+                        console.log("HIT! removing:" +id);
+                    },300);
+
+
+                    //area for modifing the hit target
+                    self.game.list[i].isHit = true;
+                    div.setAttribute("src", "./images/deadeagle.png");
+                
+                    //
+                }
+                    
                
             }
         }
     }
 }
 
-var target = function(name, startPos, direction){
+var target = function(name, startX,startY, direction){
     var self = this;
     this.name = name;
     this.speed = 1;
-    this.xPos = startPos;
-    this.yPos = 0;
+    this.xPos = startX;
+    this.yPos = startY;
     this.type = "None";
+    this.dead;
+    this.isHit;
 
     this.direction = direction
 
@@ -166,6 +193,8 @@ var target = function(name, startPos, direction){
         return this.name;
     }
 
+
+    //returns the jquerry name
     this.jqName = function(){
         return ("#" + this.name); 
     }
@@ -174,12 +203,17 @@ var target = function(name, startPos, direction){
         self.xPos = xPos;
         self.yPos = yPos;
     }
+    this.setAngle = function(){}
+
+    //changes the postion of the target object
     this.updatePosition = function(){
         //var distance=self.speed*time;
         if (this.direction == "right"){
             self.xPos=self.xPos+5;
+            //self.yPos=self.yPos+5;
             if(self.xPos == 700){
                 this.direction = "left"
+
             }
         }
         else if(this.direction =="left"){
@@ -189,6 +223,16 @@ var target = function(name, startPos, direction){
             }
         }
         
+    }
+
+    //function that makes the target fall and then sets it to dead so it can be removed
+
+    this.makefall = function(){
+        self.yPos = self.yPos + 5;
+        if(self.yPos >= 300){
+            this.dead = true;
+            
+        }
     }
    
 }

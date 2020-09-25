@@ -6,6 +6,7 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script type='text/javascript' src='./scripts/duckHunt.js'></script>
     <script type='text/javascript' src='./scripts/duckHuntUI.js'></script>
+    <script type='text/javascript' src='./scripts/duckHuntController.js'></script>
 </head>
 
 <body>
@@ -27,15 +28,14 @@
 
     <div id = "menuLayer">
         <div id = "mainMenu">
-            <!--Note: stupid-->
             <p>
-                <button onclick = "var ui = new duckHuntUI()">Normal Start</button>
+                <button id = "normGameButton" >Normal Start</button>
             </p>
             <p>
-                <button> Alternate Start </button>
+                <button id = "altGameButton"> Alternate Start </button>
             </p>
             <p>
-                <button> About </button>
+                <button  id = "aboutButton"> About </button>
             </p>
         </div>
     </div>
@@ -85,9 +85,8 @@
 
     </div>
     <script type="text/javascript">
-        //useless temporarily
         $(function () {
-            //var ui = new duckHuntUI();
+            var controller = new duckHuntControllerStart();
         });
     </script>
 

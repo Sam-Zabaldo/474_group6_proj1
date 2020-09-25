@@ -14,8 +14,14 @@ var duckHuntControllerStart = function() {
 
 }
 
-//goes to menu mode
+//starts the menu
 duckHuntMenuStart = function () {
+
+    $(gunBox).toggle();
+    $(crossHair).toggle();
+    $(gooseRight).toggle();
+    $(eagle).toggle();
+    //$(infoBoard).toggle();
 
     console.log("Menu start");
 
@@ -24,12 +30,24 @@ duckHuntMenuStart = function () {
 //begins normal game
 var duckHuntNormStart = function () {
 
+    $(gunBox).toggle();
+    $(crossHair).toggle();
+    $(gooseRight).toggle();
+    $(eagle).toggle();
+    //$(infoBoard).toggle();
+
     gameUI = new duckHuntUI ();
 
 }
 
 //begins alternate game if we want to do this
 var duckHuntAltStart = function () {
+
+    $(gunBox).toggle();
+    $(crossHair).toggle();
+    $(gooseRight).toggle();
+    $(eagle).toggle();
+    //$(infoBoard).toggle();
 
     altUI =  new duckHuntUI ();
 

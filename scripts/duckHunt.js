@@ -134,13 +134,14 @@ var player = function(game){
         for(let i = 0; i < len; i++){
             if(self.game.list[i] !== null){
                 var id = self.game.list[i].getName();
+                var type = self.game.list[i].getType();
                 var div = document.getElementById(id);
                 var rect = div.getBoundingClientRect();
                 birdX = rect.left;
                 birdY = rect.top;
-                console.log("birdX: " + birdX + " birdY: " + birdY);
+                console.log("type: " + type+ "birdX: " + birdX + " birdY: " + birdY);
                 console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
-                if(crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+65){
+                if(type == "goose" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+65){
                     //self.game.newTarget();
                     alert("hit");
                     setTimeout(function(){
@@ -150,16 +151,26 @@ var player = function(game){
 
                         console.log("HIT! removing:" +id);
                     },300);
-
-
                     //area for modifing the hit target
                     self.game.list[i].isHit = true;
                     div.setAttribute("src", "./images/deadeagle.png");
-                
+                    //
+                } else if(type == "eagle" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY+10 && crossHairLocY <= birdY+70){
+                    //self.game.newTarget();
+                    console.log("elsem8f");
+                    alert("hit");
+                    setTimeout(function(){
+                        $('#honk').trigger("play");
+                        $('#honk').prop("currentTime", 0);
+                        
+
+                        console.log("HIT! removing:" +id);
+                    },300);
+                    //area for modifing the hit target
+                    self.game.list[i].isHit = true;
+                    div.setAttribute("src", "./images/deadeagle.png");
                     //
                 }
-                    
-               
             }
         }
     }

@@ -20,8 +20,8 @@ duckHuntMenuStart = function () {
 
     $(gunBox).hide();
     $(crossHair).hide();
-    $(gooseRight).hide();
-    $(eagle).hide();
+    //$(gooseRight).hide();
+    //$(eagle).hide();
 
     $(menuLayer).show();
 
@@ -38,8 +38,8 @@ var duckHuntNormStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
-    $(gooseRight).toggle();
-    $(eagle).toggle();
+   // $(gooseRight).toggle();
+  //  $(eagle).toggle();
     //$(infoBoard).toggle();
 
     gameUI = new duckHuntUI ();
@@ -53,8 +53,8 @@ var duckHuntAltStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
-    $(gooseRight).toggle();
-    $(eagle).toggle();
+  //  $(gooseRight).toggle();
+    //$(eagle).toggle();
     //$(infoBoard).toggle();
 
     altUI =  new duckHuntUI ();

@@ -6,17 +6,24 @@ var duckHuntUI=function(){
 
     this.initialize=function(){
         self.game = new duckHuntScene();
-        
+        console.log(typeof null);
         window.setInterval(function(){
             self.game.player.randomizeCrossHairLocation();
             $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
             $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
-            moveTarget(0);
-            moveTarget(1);
+            
+            //spawns moving targets
+            
+            var i;
+            for (i = 0; i < self.game.list.length; i++) {
+                if (self.game.list[i] !== null) {
+                    moveTarget(i);
+                }
+            }
+            restack();
 
         },20);
 
-        //runs function that moves objects
     
             
         $('body').mousemove(function(event){
@@ -98,18 +105,48 @@ var duckHuntUI=function(){
 
     //funciton that takes in an index and moves the target object from the list of targets in the scene
    
-        function moveTarget(index) {
-            var jqName = self.game.list[index].jqName();  
+    function moveTarget(index) {
+        var jqName = self.game.list[index].jqName(); 
+        if(self.game.list[index].isHit == true){
+            self.game.list[index].makefall();
+            $(jqName).css("top", self.game.list[index].yPos);
+
+
+            //check to see if the target shoudl be removed
+            if(self.game.list[index].dead == true){
+                var divID = document.getElementById(self.game.list[index].name);
+                document.getElementById("playBoard").removeChild(divID);
+                self.game.list[index] = null;
+                console.log(self.game.list);
+            }
+        }
+        else{ 
             self.game.list[index].updatePosition();
             $(jqName).css("left", self.game.list[index].xPos);
+            //$(jqName).css("top", self.game.list[index].yPos);
             if(self.game.list[index].direction == "left"){
                 $(jqName).css("transform", "scaleX(-1)");
+                //document.getElementById("playBoard").removeChild(document.getElementById(self.game.list[index].name));
+                //self.game.list[index] = null;
             }
             else{
                 $(jqName).css("transform", "scaleX(1)");
             }
-    
         }
+
+    }
+
+    function restack(){
+        var i = 0;
+        for(i = 0; i < self.game.list.length; i++){
+            if(self.game.list[i] !== null){
+                return 0;
+            }
+        }
+        console.log("got here");
+        self.game.spawnTargets(3);
+
+    }
 
     
     this.handleReload = function(){
@@ -129,15 +166,10 @@ var duckHuntUI=function(){
             
             }
         }
-        
-        
-           
-            
-        
-        
-        
        
     }
+
+
 
 
    

@@ -3,7 +3,7 @@ var duckHuntScene = function(){
     this.height = 540;
     this.width = 800;
     this.score = 0;
-    this.round = 0;
+    this.round = 1;
     this.coordinateOffset = 10;
  
     this.initialize = function(){
@@ -123,7 +123,7 @@ var player = function(game){
         var crossHairLocX = self.xPos + self.xCrossHairOff;
         var crossHairLocY = self.yPos + self.yCrossHairOff;
         var len = self.game.list.length;
-        console.log(this.list);
+        //console.log(this.list);
         for(let i = 0; i < len; i++){
             var id = self.game.list[i].getName();
             var div = document.getElementById(id);

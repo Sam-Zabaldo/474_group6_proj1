@@ -6,6 +6,7 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script type='text/javascript' src='./scripts/duckHunt.js'></script>
     <script type='text/javascript' src='./scripts/duckHuntUI.js'></script>
+    <script type='text/javascript' src='./scripts/duckHuntController.js'></script>
 </head>
 
 <body>
@@ -23,19 +24,33 @@
     </audio>
     
 
+    <div id = "menuLayer">
+        <div id = "mainMenu">
+            <p>
+                <button id = "normGameButton" >Normal Start</button>
+            </p>
+            <p>
+                <button id = "altGameButton"> Alternate Start </button>
+            </p>
+            <p>
+                <button  id = "aboutButton"> About </button>
+            </p>
+        </div>
+    </div>
+    
 
     <div id="mainContent">
         <div id="gameBoard">
             <div id="playBoard">
-                <img id="gooseRight" src="./images/animated-goose-image-left-right.gif">
+                <img hidden id="gooseRight" src="./images/animated-goose-image-left-right.gif">
 
                 </img>
-                <img id="eagle" src="./images/eagle.gif">
+                <img hidden id="eagle" src="./images/eagle.gif">
                 </img>
-                <div id="crossHair" class="image">
+                <div hidden id="crossHair" class="image">
                 </div>
 
-                <div id="gunBox">
+                <div hidden id="gunBox">
                     <img id="gunImage" src='./images/gun.png' />
                 </div>
             </div>
@@ -69,7 +84,7 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            var ui = new duckHuntUI();
+            var controller = new duckHuntControllerStart();
         });
     </script>
 

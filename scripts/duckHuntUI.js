@@ -3,7 +3,7 @@ var duckHuntUI=function(){
     this.game = undefined;
     this.running = true;
     this.coordinateOffset = 10;
-    
+
     this.initialize=function(){
         self.game = new duckHuntScene();
         

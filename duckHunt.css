@@ -7,6 +7,32 @@ body{
     -o-user-select: none;
 }
 
+button {
+    display: block;
+}
+
+#menuLayer{
+    width: 800px;    
+    height: 620px;
+    border-style:solid;
+    border-width:1px;
+    border-color:black;
+    margin:0;
+    padding:0;
+    z-index: 99;
+    position: absolute;
+}
+
+#mainMenu{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
 #gameBoard{
     width: 800px;    
     height: 600px;
@@ -15,6 +41,7 @@ body{
     border-color:black;
     margin:0;
     padding:0;
+    z-index: 0;
 }
 #playBoard{
     cursor: none;
@@ -29,8 +56,21 @@ body{
     border-color:black;
     margin:0;
     padding:0;
+    
 }
 
+#infoBoard{
+    margin-top: -60px;
+    position: absolute;
+    height: 80px;
+    width: 800px;
+    display: flex;
+    background-color: salmon;
+    flex-direction: row;
+    justify-content: space-evenly;
+    z-index: 0;
+     
+}
 .hiddenAudio{
     display: none;
 }
@@ -122,7 +162,7 @@ body{
 }
 
 #ammoBox{
-    margin-right: -;
+    /*margin-right: -;*/
     flex-direction: row;
     justify-content: space-evenly;
     justify-content: center;

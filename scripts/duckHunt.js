@@ -34,20 +34,23 @@ var duckHuntScene = function(){
         var yLoc = Math.floor((Math.random() * 300));
         console.log("birdNum: " + birdNum + " yLoc: " + yLoc);
         var name = "";
+        var type = "";
         var img = document.createElement('img');
         if(birdNum == 1){
+            type = "eagle";
             name = "eagle"+this.list.length.toString()+"";
             img.id = name;
             img.src = './images/eagle.gif';
             img.setAttribute("style", "right: "+"0"+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         } else if(birdNum == 2){
+            type = "goose";
             name = "gooseRight"+this.list.length.toString()+"";
             img.id = name;
             img.src = './images/animated-goose-image-left-right.gif';
             img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
         console.log(name);
-        this.list.push(new target(name, 0,yLoc, "right"));
+        this.list.push(new target(name, 0,yLoc, "right", type));
         document.getElementById("playBoard").appendChild(img);
     }
 
@@ -120,14 +123,6 @@ var player = function(game){
         }
          
     }
-    /* this.fireGun = function(birdX, birdY, fireX, fireY){
-        //Handles firing gun logic
-        //console.log("in fireGun");
-        if(fireX >= birdX+10 && fireX <= birdX+80 && fireY >= birdY+10)
-            && fireY <= birdY+60){
-                console.log("bird hit!");
-            }
-    } */
 
     this.fireGun = function(){
         self.ammo -= 1;
@@ -144,9 +139,10 @@ var player = function(game){
                 birdX = rect.left;
                 birdY = rect.top;
                 console.log("birdX: " + birdX + " birdY: " + birdY);
-                //console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
-                if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
+                console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
+                if(crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+65){
                     //self.game.newTarget();
+                    alert("hit");
                     setTimeout(function(){
                         $('#honk').trigger("play");
                         $('#honk').prop("currentTime", 0);
@@ -169,13 +165,13 @@ var player = function(game){
     }
 }
 
-var target = function(name, startX,startY, direction){
+var target = function(name, startX,startY, direction, type){
     var self = this;
     this.name = name;
     this.speed = 1;
     this.xPos = startX;
     this.yPos = startY;
-    this.type = "None";
+    this.type = type;
     this.dead;
     this.isHit;
 
@@ -191,6 +187,10 @@ var target = function(name, startX,startY, direction){
 
     this.getName = function(){
         return this.name;
+    }
+
+    this.getType = function(){
+        return this.type;
     }
 
 

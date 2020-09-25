@@ -9,13 +9,14 @@ var duckHuntUI=function(){
 
     this.initialize=function(){
         self.game = new duckHuntScene();
-
+        
         window.setInterval(function(){
             self.game.player.randomizeCrossHairLocation();
             $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
             $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
             moveTarget(0);
             moveTarget(1);
+
         },20);
 
         //runs function that moves objects
@@ -29,20 +30,30 @@ var duckHuntUI=function(){
             $('#gunBox').css("transform","rotate("+ angle + "deg)");
 
         });
-        $("body").mousedown(function(e){
-
-            if (self.game.player.canShoot){
+        $('body').keypress(function(event){
+            if (event.which==114){
+                    self.handleReload();
+                    
+                }
+                
+                
+               
+            
+        });
+        
+        $("#playBoard").mousedown(function(e){
+            if (self.game.player.ammo == 0){
+                self.handleReload();
+            }
+            else if (self.game.player.canShoot && !self.game.player.reloading){
                 $('#gunshot').trigger("play");
                 $('#gunshot').prop("currentTime", 0);
                 self.game.player.canShoot = false;
-                console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
-                //var div = document.getElementById("testTarget");
-                //var rect = div.getBoundingClientRect();
-                //alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
-                //self.game.player.fireGun(rect.left, rect.top, e.clientX, e.clientY);
-
+                //console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
+                
                 self.game.player.fireGun();
-                $('#ammo').text(self.game.player.ammo);
+                self.updateAmmoIcon(self.game.player.ammo)
+
                 $('#gunImage').attr("src", "./images/gun-fire.png")
                 setTimeout(function(){
                     $('#gunImage').attr("src", "./images/gun.png") 
@@ -56,9 +67,21 @@ var duckHuntUI=function(){
                     },700);
                        
                 },1000);
+                
             }
+        
         });
 
+    }
+    this.updateAmmoIcon = function(ammoAmt){
+        for (i =1; i <= 6; i++){
+            if (i > ammoAmt){
+                $('#ammo' + i).attr("src", "./images/ammo-used-crop.png");
+            }
+            else{
+                $('#ammo' + i).attr("src", "./images/ammo-crop.png");
+            }
+        }
     }
     this.calculateGunAngle = function(xMouse, yMouse){
         var opposite = 400 - xMouse;
@@ -92,7 +115,32 @@ var duckHuntUI=function(){
         }
 
     
-
+    this.handleReload = function(){
+        if (!self.game.player.reloading){
+            self.game.player.reloading = true;
+            var ammoMissing =  6  - self.game.player.ammo;
+            for (i=1; i <=ammoMissing; i++){
+                setTimeout(function(){
+                    $('#chambering').trigger("play");
+                    $('#chambering').prop("currentTime", 0);
+                    self.game.player.ammo += 1;
+                    self.updateAmmoIcon(self.game.player.ammo);
+                    if (self.game.player.ammo == 6){
+                        self.game.player.reloading = false; 
+                    }
+                }, i *500);
+            
+            }
+        }
+        
+        
+           
+            
+        
+        
+        
+       
+    }
 
 
    
@@ -101,9 +149,3 @@ var duckHuntUI=function(){
 }
 
 
-/*
-$(document).ready(function(){
-    console.log("Document Ready")
-    var ui = new duckHuntUI();
-});
-*/

@@ -1,5 +1,4 @@
 
-
 body{
     user-select: none;
     -moz-user-select: none;
@@ -50,7 +49,7 @@ button {
     width: 800px;    
     height: 540px;
     border-style:solid;
-    border-width:1px;
+    border-width:5px;
     background-image: url(images/duck_hunt_background.jpg);
     background-size: contain;
     background-color: rgb(37, 117, 37);
@@ -75,38 +74,28 @@ button {
 .hiddenAudio{
     display: none;
 }
-.infoElements{
-    height: 60px;
-    width: 200px;
-    text-align: center;
 
-
-}
 #eagle{
     right: 600px;
+    top: 300px;
     position: absolute;
     width: 90px;
     transform: scaleX(1);
 }
 #gooseRight{
+    right: 300px;
+    top: 200px;
     position: absolute;
     width: 90px;
-    right: 0px;
-    margin-top: 220px;
-    margin-bottom: 220px;
+    transform: scaleX(1);
 }
-
-#testTarget{
+#gooseRight{
+    right: 300px;
+    top: 200px;
     position: absolute;
     width: 90px;
-    margin-top: 220px;
-    margin-bottom: 220px;
-    margin-left: 50px;
-    margin-right: 500px;
-    z-index: 1;
+    transform: scaleX(1);
 }
-
-
 #crossHair{
     top: 245px;
     left: 375px;
@@ -118,17 +107,7 @@ button {
     z-index: 2;
 
 }
-/*
-#gunBox {
-    transform: rotate(45deg);
-    position: absolute;
-    margin-top: 400px;
-    margin-bottom: 60px;
-    margin-left: 300px;
-    margin-right: 300px;
-    height: 200px;
-}
-*/
+
 #gunBox{
     position: absolute;
     transform: rotate(0deg);
@@ -138,33 +117,85 @@ button {
     margin-right: 300px;
     height: 400px;
 }
+
+
+
+#infoBoard{
+    border-style:solid;
+    border-width:5px;
+    border-color:#7fcf0e;
+    margin:0;
+    padding:0;
+
+    margin-top: -60px;
+    position: absolute;
+    height: 80px;
+    width: 801px;
+    display: flex;
+    background-color: #877000;
+    flex-direction: row;
+    justify-content: space-around;
+     
+}
+
 #gunImage{
     width: 100%;
 }
-#score{
-    
+#centerElements{
+    margin-top: 10px;
+    height:75%;
+    flex-direction: row;
+    justify-content: space-between;
     justify-content: center;
     display: flex;
-    flex-direction: column;
-     
 }
-#ammo{
-    
+#xBox{
+    flex-direction: row;
+    justify-content: space-evenly;
     justify-content: center;
     display: flex;
-    flex-direction: column;
      
 }
-#gameTitle{
-  
+.x{
+    width: 60px;
+    height: 60px;
+}
+
+#ammoBox{
+    /*margin-right: -;*/
+    flex-direction: row;
+    justify-content: space-evenly;
     justify-content: center;
     display: flex;
-    flex-direction: column;
      
 }
+.ammoIcon{
+    margin: 2px;
+    height: 90%;
+    width: auto;
+}
+
 #roundNumber{
- 
+    color: white;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: large;
     justify-content: center;
     display: flex;
     flex-direction: column;
+}
+
+
+#pauseButton{
+    background-color: #7fcf0e; /* Green */
+    border: none;
+    border-radius: 10px;
+    margin-top: 8px;
+    color: white;
+    height:80%;
+    padding: 15px 32px;
+    text-align: center;
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

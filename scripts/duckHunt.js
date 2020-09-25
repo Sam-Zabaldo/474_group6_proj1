@@ -16,6 +16,29 @@ var duckHuntScene = function(){
     this.list = [new target("eagle", 0, "right"), 
                  new target("gooseRight", 700, "left")];
 
+    this.newTarget = function(){
+        var birdNum = Math.floor((Math.random() * 2) + 1);
+        var xLoc = Math.floor((Math.random() * 600));
+        var yLoc = Math.floor((Math.random() * 300));
+        console.log("birdNum: " + birdNum + " yLoc: " + yLoc);
+        var name = "";
+        var img = document.createElement('img');
+        if(birdNum == 1){
+            name = "eagle"+this.list.length.toString()+"";
+            img.id = name;
+            img.src = './images/eagle.gif';
+            img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1);");
+        } else if(birdNum == 2){
+            name = "gooseRight"+this.list.length.toString()+"";
+            img.id = name;
+            img.src = './images/animated-goose-image-left-right.gif';
+            img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1);");
+        }
+
+        this.list.push(new target(name, 0, "right"));
+        document.getElementById("playBoard").appendChild(img);
+    }
+
     this.reset=function(){
         self.score=0;
         self.round=0;
@@ -24,6 +47,7 @@ var duckHuntScene = function(){
 }
 
 var player = function(game){
+    this.reloading = false;
     var self=this;
     this.game = game;
     this.crossHairRadius = 15;
@@ -39,6 +63,15 @@ var player = function(game){
 
     this.initialize = function(){
 
+    }
+    this.updateAmmo = function(num){
+        if (self.ammo + num > 6 || self.ammo + num < 0){
+            return false;
+        }
+        else{
+            self.ammo += num;
+            return true;
+        }
     }
 
     this.setPostion=function(xPos, yPos){
@@ -85,9 +118,12 @@ var player = function(game){
     } */
 
     this.fireGun = function(){
+        self.ammo -= 1;
+        console.log("Ammo: " + self.ammo);
         var crossHairLocX = self.xPos + self.xCrossHairOff;
         var crossHairLocY = self.yPos + self.yCrossHairOff;
         var len = self.game.list.length;
+        console.log(this.list);
         for(let i = 0; i < len; i++){
             var id = self.game.list[i].getName();
             var div = document.getElementById(id);
@@ -96,6 +132,7 @@ var player = function(game){
             birdY = rect.top;
             console.log("birdX: " + birdX + " birdY: " + birdY);
             if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
+                self.game.newTarget();
                 setTimeout(function(){
                     $('#honk').trigger("play");
                     $('#honk').prop("currentTime", 0);
@@ -105,10 +142,8 @@ var player = function(game){
             }
         }
     }
-
-    
-
 }
+
 var target = function(name, startPos, direction){
     var self = this;
     this.name = name;
@@ -126,7 +161,6 @@ var target = function(name, startPos, direction){
     this.setTargetName= function(name){
         this.name = name;
     }
-
 
     this.getName = function(){
         return this.name;

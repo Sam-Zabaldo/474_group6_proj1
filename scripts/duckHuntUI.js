@@ -4,9 +4,6 @@ var duckHuntUI=function(){
     this.running = true;
     this.coordinateOffset = 10;
 
-    //NOTE: stupid -s
-    document.getElementById("menuLayer").style.visibility = "hidden";
-
     this.initialize=function(){
         self.game = new duckHuntScene();
         

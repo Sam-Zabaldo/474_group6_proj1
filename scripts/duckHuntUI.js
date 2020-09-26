@@ -7,7 +7,7 @@ var duckHuntUI=function(){
     this.initialize=function(){
         self.game = new duckHuntScene();
         console.log(typeof null);
-        window.setInterval(function(){
+        var startClock = window.setInterval(function(){
             self.game.player.randomizeCrossHairLocation();
             $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
             $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
@@ -21,6 +21,11 @@ var duckHuntUI=function(){
                 }
             }
             restack();
+            if(self.game.strikes == 3){
+                clearInterval(startClock);
+                self.removeTargets();
+                self.endGame();
+            }
 
         },20);
 
@@ -56,7 +61,8 @@ var duckHuntUI=function(){
                 //console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
                 
                 self.game.player.fireGun();
-                self.updateAmmoIcon(self.game.player.ammo)
+                self.updateAmmoIcon(self.game.player.ammo);
+                self.updateStrikeIcon(self.game.strikes);
 
                 $('#gunImage').attr("src", "./images/gun-fire.png")
                 setTimeout(function(){
@@ -87,6 +93,17 @@ var duckHuntUI=function(){
             }
         }
     }
+    this.updateStrikeIcon = function(num_strikes){
+        for (i =1; i <= 3; i++){
+            if (i > num_strikes){
+                $('#x' + i).attr("src", "./images/x-gray.png");
+            }
+            else{
+                $('#x' + i).attr("src", "./images/x-red.png");
+            }
+        }
+    }
+
     this.calculateGunAngle = function(xMouse, yMouse){
         var opposite = 400 - xMouse;
         var adjacent = 540 - yMouse;
@@ -112,7 +129,7 @@ var duckHuntUI=function(){
             $(jqName).css("top", self.game.list[index].yPos);
 
 
-            //check to see if the target shoudl be removed
+            //check to see if the target should be removed
             if(self.game.list[index].dead == true){
                 var divID = document.getElementById(self.game.list[index].name);
                 document.getElementById("playBoard").removeChild(divID);
@@ -135,7 +152,7 @@ var duckHuntUI=function(){
         }
 
     }
-
+    //adds more elements to target list creating more divs 
     function restack(){
         var i = 0;
         for(i = 0; i < self.game.list.length; i++){
@@ -167,6 +184,27 @@ var duckHuntUI=function(){
             }
         }
        
+    }
+    //clears all target divs from the html
+    this.removeTargets = function(){
+        var i =0;
+        for(i = 0; i < self.game.list.length; i++){
+            if(self.game.list[i] != null){
+                var divID = document.getElementById(self.game.list[i].name);
+                document.getElementById("playBoard").removeChild(divID);
+                self.game.list[i] = null;
+                console.log(self.game.list);
+            }
+        }
+    }
+
+    this.endGame = function (){
+        $(menuLayer).toggle();
+    
+        $(gunBox).hide();
+        $(crossHair).hide();
+       // alert(gameUI.game.score);
+        self.running = false;
     }
 
 

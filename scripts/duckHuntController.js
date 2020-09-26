@@ -67,3 +67,4 @@ var duckHuntAdviceStart = function () {
     alert("Advice");
 
 }
+

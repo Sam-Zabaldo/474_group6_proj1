@@ -4,6 +4,7 @@ var duckHuntScene = function(){
     this.width = 800;
     this.score = 0;
     this.round = 1;
+    this.strikes = 0;
     this.coordinateOffset = 10;
  
     this.initialize = function(){
@@ -131,6 +132,7 @@ var player = function(game){
 
     this.fireGun = function(){
         self.ammo -= 1;
+        var noHit = true;
         console.log("Ammo: " + self.ammo);
         var crossHairLocX = self.xPos + self.xCrossHairOff;
         var crossHairLocY = self.yPos + self.yCrossHairOff;
@@ -147,6 +149,8 @@ var player = function(game){
                 //console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
                 if(crossHairLocX >= birdX && crossHairLocX <= birdX+100 && crossHairLocY >= birdY && crossHairLocY <= birdY+100){
                     //self.game.newTarget();
+                    noHit = false;
+                    this.game.score +=1
                     setTimeout(function(){
                         $('#honk').trigger("play");
                         $('#honk').prop("currentTime", 0);
@@ -166,6 +170,11 @@ var player = function(game){
                
             }
         }
+        if(noHit){
+            self.game.strikes +=1;
+        }
+        console.log(self.game.strikes);
+        console.log(this.game.score);
     }
 }
 

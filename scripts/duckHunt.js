@@ -141,9 +141,9 @@ var player = function(game){
                 birdY = rect.top;
                 console.log("type: " + type+ "birdX: " + birdX + " birdY: " + birdY);
                 console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
-                if(type == "goose" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+65){
+                if(type == "goose" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+35){
                     //self.game.newTarget();
-                    alert("hit");
+                    //alert("hit");
                     setTimeout(function(){
                         $('#honk').trigger("play");
                         $('#honk').prop("currentTime", 0);
@@ -157,8 +157,7 @@ var player = function(game){
                     //
                 } else if(type == "eagle" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY+10 && crossHairLocY <= birdY+70){
                     //self.game.newTarget();
-                    console.log("elsem8f");
-                    alert("hit");
+                    //alert("hit");
                     setTimeout(function(){
                         $('#honk').trigger("play");
                         $('#honk').prop("currentTime", 0);

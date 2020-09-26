@@ -39,7 +39,7 @@ var duckHuntScene = function(){
         if(birdNum == 1){
             name = "eagle"+this.list.length.toString()+"";
             img.id = name;
-            img.src = './images/eagle.gif';
+            img.src = './images/eagle2.gif';
             img.setAttribute("style", "right: "+"0"+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         } else if(birdNum == 2){
             name = "gooseRight"+this.list.length.toString()+"";
@@ -162,7 +162,7 @@ var player = function(game){
 
                     //area for modifing the hit target
                     self.game.list[i].isHit = true;
-                    div.setAttribute("src", "./images/deadeagle.png");
+                    self.handleHit(id, div);
                 
                     //
                 }
@@ -175,6 +175,15 @@ var player = function(game){
         }
         console.log(self.game.strikes);
         console.log(this.game.score);
+    }
+
+    this.handleHit = function(name, div){
+        if(name.includes("eagle")){
+            div.setAttribute("src", "./images/deadeagle.png");
+        }
+        if(name.includes("goose")){
+            div.setAttribute("src", "./images/deadgoose.png");
+        }
     }
 }
 

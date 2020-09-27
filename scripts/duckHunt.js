@@ -157,11 +157,13 @@ var player = function(game){
                     },300);
                     //area for modifing the hit target
                     self.game.list[i].isHit = true;
-                    div.setAttribute("src", "./images/deadeagle.png");
+                    self.handleHit(id, div);
                     //
                 } else if(type == "eagle" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY+10 && crossHairLocY <= birdY+70){
                     //self.game.newTarget();
                     //alert("hit");
+                    noHit = false;
+                    this.game.score +=1
                     setTimeout(function(){
                         $('#honk').trigger("play");
                         $('#honk').prop("currentTime", 0);

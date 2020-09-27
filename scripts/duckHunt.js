@@ -161,6 +161,7 @@ var player = function(game){
 
 
                     //area for modifing the hit target
+                    //
                     self.game.list[i].isHit = true;
                     self.handleHit(id, div);
                 

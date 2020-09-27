@@ -170,6 +170,7 @@ var player = function(game){
                         console.log("HIT! removing:" +id);
                     },300);
                     //area for modifing the hit target
+                    //
                     self.game.list[i].isHit = true;
                     self.handleHit(id, div);
                     //

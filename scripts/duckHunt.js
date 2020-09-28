@@ -143,7 +143,7 @@ var player = function(game){
                 birdY = rect.top;
                 console.log("type: " + type+ "birdX: " + birdX + " birdY: " + birdY);
                 console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
-                if(type == "goose" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+35){
+                if(type == "goose" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+30){
                     //self.game.newTarget();
                     noHit = false;
                     this.game.score +=1
@@ -159,7 +159,7 @@ var player = function(game){
                     self.game.list[i].isHit = true;
                     self.handleHit(id, div);
                     //
-                } else if(type == "eagle" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY+10 && crossHairLocY <= birdY+70){
+                } else if(type == "eagle" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+25){
                     //self.game.newTarget();
                     //alert("hit");
                     noHit = false;

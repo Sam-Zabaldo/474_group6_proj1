@@ -3,21 +3,26 @@ var duckHuntUI=function(){
     this.game = undefined;
     this.running = true;
     this.coordinateOffset = 10;
+    this.reloadInterrupted = false; 
+    this.volume = 75; 
+    this.muted = false; 
 
     this.initialize=function(){
         self.game = new duckHuntScene();
         console.log(typeof null);
         var startClock = window.setInterval(function(){
-            self.game.player.randomizeCrossHairLocation();
-            $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
-            $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
-            
-            //spawns moving targets
-            
-            var i;
-            for (i = 0; i < self.game.list.length; i++) {
-                if (self.game.list[i] !== null) {
-                    moveTarget(i);
+            if (self.running == true) {
+                self.game.player.randomizeCrossHairLocation();
+                $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
+                $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
+                
+                //spawns moving targets
+                
+                var i;
+                for (i = 0; i < self.game.list.length; i++) {
+                    if (self.game.list[i] !== null) {
+                        moveTarget(i);
+                    }
                 }
             }
             restack();
@@ -32,55 +37,123 @@ var duckHuntUI=function(){
     
             
         $('body').mousemove(function(event){
-            var x = event.pageX - self.game.player.width/2;
-            var y = event.pageY - self.game.player.height/2;
-            angle = self.calculateGunAngle(x,y);
-            self.game.player.updatePosition(x,y);
-            $('#gunBox').css("transform","rotate("+ angle + "deg)");
-
+            if (self.running == true) {
+                var x = event.pageX - self.game.player.width/2;
+                var y = event.pageY - self.game.player.height/2;
+                angle = self.calculateGunAngle(x,y);
+                self.game.player.updatePosition(x,y);
+                $('#gunBox').css("transform","rotate("+ angle + "deg)");
+            }
         });
         $('body').keypress(function(event){
-            if (event.which==114){
-                    self.handleReload();
-                    
-                }
-                
-                
-               
-            
+            if (self.running == true) {
+                if (event.which==114){
+                        self.handleReload();
+                        
+                    }
+            }
         });
         
         $("#playBoard").mousedown(function(e){
-            if (self.game.player.ammo == 0){
-                self.handleReload();
-            }
-            else if (self.game.player.canShoot && !self.game.player.reloading){
-                $('#gunshot').trigger("play");
-                $('#gunshot').prop("currentTime", 0);
-                self.game.player.canShoot = false;
-                //console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
-                
-                self.game.player.fireGun();
-                self.updateAmmoIcon(self.game.player.ammo);
-                self.updateStrikeIcon(self.game.strikes);
+            if (self.running == true) {
+                if (self.game.player.ammo == 0){
+                    self.handleReload();
+                }
+                else if (self.game.player.canShoot && !self.game.player.reloading){
+                    $('#gunshot').trigger("play");
+                    $('#gunshot').prop("currentTime", 0);
+                    self.game.player.canShoot = false;
+                    //console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
+                    
+                    self.game.player.fireGun();
+                    self.updateAmmoIcon(self.game.player.ammo);
+                    self.updateStrikeIcon(self.game.strikes);
 
-                $('#gunImage').attr("src", "./images/gun-fire.png")
-                setTimeout(function(){
-                    $('#gunImage').attr("src", "./images/gun.png") 
-                },100);
-
-                setTimeout(function(){
-                    $('#reload').trigger("play");
-                    $('#reload').prop("currentTime", 0);
+                    $('#gunImage').attr("src", "./images/gun-fire.png")
                     setTimeout(function(){
-                        self.game.player.canShoot = true; 
-                    },700);
-                       
-                },1000);
-                
+                        $('#gunImage').attr("src", "./images/gun.png") 
+                    },100);
+
+                    setTimeout(function(){
+                        $('#reload').trigger("play");
+                        $('#reload').prop("currentTime", 0);
+                        setTimeout(function(){
+                            self.game.player.canShoot = true; 
+                        },700);
+                        
+                    },1000);
+                    
+                }
             }
-        
         });
+
+        $("#pauseButton").on("click", function() {
+            // pause
+            if (self.running == true) {
+                self.running = false; 
+                $("#pauseMenu").show(); 
+                $("#pauseButton").text("Unpause"); 
+                $("#playBoard").css("cursor", "auto"); 
+                $("#crossHair").hide(); 
+                if (self.game.player.reloading == true) {
+                    self.reloadInterrupted = true; 
+                    self.game.player.reloading == false; 
+                }
+            // unpause
+            } else {
+                self.running = true; 
+                $("#pauseMenu").hide(); 
+                $("#pauseButton").text("Pause"); 
+                $("#playBoard").css("cursor", "none"); 
+                $("#crossHair").show(); 
+                if (self.reloadInterrupted == true) {
+                    self.handleReload(); 
+                    self.reloadInterrupted = false; 
+                }
+            }
+        }); 
+
+        $("#volUp").on("click", function() {
+            if (self.volume <= 95) {
+                self.volume += 5; 
+                self.setAndShowVol();
+            } 
+            if (self.muted == true) {
+                self.muted = false; 
+            }
+            $("#volMute").text("Mute"); 
+        }); 
+        $("#volDown").on("click", function() {
+            if (self.volume >= 5) {
+                self.volume -= 5; 
+                self.setAndShowVol(); 
+                if (self.volume == 0) {
+                    self.muted = true; 
+                    $("#volMute").text("Unmute"); 
+                }
+            } 
+        });
+        $("#volMute").on("click", function() {
+            if (self.muted == false) {
+                self.muted = true; 
+                self.volume = 0; 
+                self.setAndShowVol(); 
+                $("#volMute").text("Unmute"); 
+            } else {
+                self.muted = false; 
+                self.volume = 5; 
+                self.setAndShowVol(); 
+                $("#volMute").text("Mute"); 
+            }
+        }); 
+        this.setAndShowVol = function() {
+            var audio = document.getElementsByClassName("hiddenAudio");
+            for (var i = 0; i < audio.length; i ++) {
+                audio.item(i).volume = self.volume / 100; 
+            }
+            $("#vol").text(self.volume + "%");
+        };
+
 
     }
     this.updateAmmoIcon = function(ammoAmt){
@@ -172,11 +245,15 @@ var duckHuntUI=function(){
             var ammoMissing =  6  - self.game.player.ammo;
             for (i=1; i <=ammoMissing; i++){
                 setTimeout(function(){
-                    $('#chambering').trigger("play");
-                    $('#chambering').prop("currentTime", 0);
-                    self.game.player.ammo += 1;
-                    self.updateAmmoIcon(self.game.player.ammo);
-                    if (self.game.player.ammo == 6){
+                    if (self.running == true) {
+                        $('#chambering').trigger("play");
+                        $('#chambering').prop("currentTime", 0);
+                        self.game.player.ammo += 1;
+                        self.updateAmmoIcon(self.game.player.ammo);
+                        if (self.game.player.ammo == 6){
+                            self.game.player.reloading = false; 
+                        }
+                    } else {
                         self.game.player.reloading = false; 
                     }
                 }, i *500);

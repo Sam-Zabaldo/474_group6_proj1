@@ -192,3 +192,44 @@ button {
     display: inline-block;
     font-size: 16px;
 }
+
+#pauseMenu {
+    display: none; 
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%; 
+    height: 50%; 
+    background-color: #c0f378; 
+    z-index: 2;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 200%; 
+    text-align: center;
+}
+
+.vol {
+    position: absolute; 
+    width: 20%; 
+    top: 25%; 
+    font-size: 60%; 
+}
+
+#volDown {
+    left: 10%; 
+}
+
+#vol {
+    top: 32%; 
+    left: 40%; 
+    line-height: 25%;
+    font-size: 65%; 
+}
+
+#volUp {
+    left: 70%; 
+}
+
+#volMute {
+    top: 45%; 
+    left: 40%; 
+}

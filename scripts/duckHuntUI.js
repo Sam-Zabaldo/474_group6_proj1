@@ -12,6 +12,9 @@ var duckHuntUI=function(){
         console.log(typeof null);
         var startClock = window.setInterval(function(){
             if (self.running == true) {
+                if (self.game.player.ammo > 6) {
+                    self.game.player.ammo = 6; 
+                }
                 self.game.player.randomizeCrossHairLocation();
                 $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
                 $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);

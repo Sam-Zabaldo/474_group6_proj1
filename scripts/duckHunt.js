@@ -3,17 +3,22 @@ var duckHuntScene = function(){
     this.height = 540;
     this.width = 800;
     this.score = 0;
-    this.round = 1;
-    this.strikes = 0;
     this.coordinateOffset = 10;
+
+    //Round Logic
+    this.strikes = 0;
+    this.minTicksBetweenSpawn = 30;
+    this.ticksSinceSpawn = 0;
+    this.round = 1;
+    this.maxTargets = 3;
+    this.spawnCount = 0;
+    this.maxSpeed = 5;
  
     this.initialize = function(){
-        this.spawnTargets(3);
+        //this.spawnTargets(3);
     }
 
     this.spawnTargets = function(numberTargets){
-        this.list = [];
-        var i;
         for (i = 0; i < numberTargets; i++) {
             this.newTarget();
         }
@@ -26,32 +31,79 @@ var duckHuntScene = function(){
     
     //this.list = [new target("eagle", 0,0, "right"), 
                 // new target("gooseRight", 700,200, "left")];
+    this.newRound = function(){
+        if (self.minTicksBetweenSpawn > 10){
+            self.minTicksBetweenSpawn -= 5;
+        }
+        self.ticksSinceSpawn = 0;
+        self.strikes = 0;
+        self.round += 1;
+        self.maxTargets *= 2;
+        self.spawnCount = 0;
+        self.maxSpeed += Math.round(self.maxSpeed * .5);
 
+    }
+
+    this.gameOver = function(){
+        return self.strikes >= 3;
+    }
+
+    this.roundOver = function(){
+        if (self.spawnCount >= self.maxTargets){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+                
 
     //function that generates a target
     this.newTarget = function(){
-        var birdNum = Math.floor((Math.random() * 2) + 1);
-        var xLoc = Math.floor((Math.random() * 600));
-        var yLoc = Math.floor((Math.random() * 300));
-        console.log("birdNum: " + birdNum + " yLoc: " + yLoc);
+        console.log("Spawning New Bird>>>>>>");
+        var yLoc = Math.floor((Math.random() * 500));
+        var xLoc = 0;
         var name = "";
         var type = "";
+        var direction = "";
+        var speed = Math.round(Math.random() * self.maxSpeed);
+
         var img = document.createElement('img');
-        if(birdNum == 1){
+
+        if (Math.random() > .5){
+            direction = "right";
+            xLoc = 0;
+        }
+        else{
+            direction = "left";
+            xLoc = 750;
+        }
+
+        if(Math.random() > .75){
             type = "eagle";
             name = "eagle"+this.list.length.toString()+"";
             img.id = name;
             img.src = './images/eagle2.gif';
-            img.setAttribute("style", "right: "+"0"+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
-        } else if(birdNum == 2){
+            img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
+        } 
+        else{
             type = "goose";
             name = "gooseRight"+this.list.length.toString()+"";
             img.id = name;
             img.src = './images/animated-goose-image-left-right.gif';
             img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
-        console.log(name);
-        this.list.push(new target(name, 0,yLoc, "right", type));
+        var maxAngleDown = Math.floor((180/Math.PI) * Math.atan(1-yLoc/700));
+       
+        
+        var maxAngleUp = -1*(Math.floor((180/Math.PI) * Math.atan(yLoc/700)));
+        
+        var angle = Math.floor(Math.random() * (maxAngleUp - maxAngleDown) + maxAngleDown);
+
+        console.log("type: " + type + " yPos: "+ yLoc + " angle: " + angle + " speed: " + speed);
+        console.log("Up: " + maxAngleUp);
+        console.log("Down: " + maxAngleDown);
+        this.list.push(new target(type,name,xLoc,yLoc, direction, angle,speed));
         document.getElementById("playBoard").appendChild(img);
     }
 
@@ -182,8 +234,7 @@ var player = function(game){
         if(noHit){
             self.game.strikes +=1;
         }
-        console.log(self.game.strikes);
-        console.log(this.game.score);
+      
     }
 
     this.handleHit = function(name, div){
@@ -196,8 +247,10 @@ var player = function(game){
     }
 }
 
-var target = function(name, startX,startY, direction, type){
+var target = function(type, name, startX,startY, direction,angle,speed){
     var self = this;
+    this.angle = angle;
+    this.speed = speed;
     this.name = name;
     this.speed = 1;
     this.xPos = startX;
@@ -205,7 +258,6 @@ var target = function(name, startX,startY, direction, type){
     this.type = type;
     this.dead;
     this.isHit;
-
     this.direction = direction
 
     this.setTargetType = function(type){
@@ -240,7 +292,7 @@ var target = function(name, startX,startY, direction, type){
     this.updatePosition = function(){
         //var distance=self.speed*time;
         if (this.direction == "right"){
-            self.xPos=self.xPos+5;
+            self.xPos=self.xPos+self.speed;
             //self.yPos=self.yPos+5;
             if(self.xPos == 700){
                 this.direction = "left"
@@ -248,7 +300,7 @@ var target = function(name, startX,startY, direction, type){
             }
         }
         else if(this.direction =="left"){
-            self.xPos = self.xPos -5;
+            self.xPos = self.xPos -self.speed;
             if(self.xPos == 0){
                 this.direction = "right";
             }

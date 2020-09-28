@@ -18,8 +18,23 @@ var duckHuntUI=function(){
                 self.game.player.randomizeCrossHairLocation();
                 $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
                 $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
-                
-                //spawns moving targets
+                self.game.ticksSinceSpawn += 1;
+               // console.log(self.game.ticksSinceSpawn);
+                if (self.game.ticksSinceSpawn >= self.game.minTicksBetweenSpawn +  Math.floor(Math.random() * 400)){
+                    self.game.spawnTargets(1);
+                    self.game.spawnCount+= 1;
+                    self.game.ticksSinceSpawn = 0;
+                }
+                if (self.game.gameOver()){
+                    clearInterval(startClock);
+                    self.removeTargets();
+                    self.endGame();
+                }
+               if (self.game.roundOver()){
+                    self.game.newRound();
+                    self.running = false; 
+                    console.log("ROUND OVER >>>>>>>>>");
+                }
                 
                 var i;
                 for (i = 0; i < self.game.list.length; i++) {
@@ -28,12 +43,7 @@ var duckHuntUI=function(){
                     }
                 }
             }
-            restack();
-            if(self.game.strikes == 3){
-                clearInterval(startClock);
-                self.removeTargets();
-                self.endGame();
-            }
+           // restack();
 
         },20);
 

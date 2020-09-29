@@ -15,9 +15,8 @@ var duckHuntUI=function(){
                 if (self.game.player.ammo > 6) {
                     self.game.player.ammo = 6; 
                 }
-                self.game.player.randomizeCrossHairLocation();
-                $('#crossHair').css("top", self.game.player.yPos +self.game.player.yCrossHairOff - self.coordinateOffset );
-                $('#crossHair').css("left", self.game.player.xPos+self.game.player.xCrossHairOff - self.coordinateOffset);
+                //self.game.player.randomizeCrossHairLocation();
+               
                 self.game.ticksSinceSpawn += 1;
                // console.log(self.game.ticksSinceSpawn);
                 if (self.game.ticksSinceSpawn >= self.game.minTicksBetweenSpawn +  Math.floor(Math.random() * 400)){
@@ -34,12 +33,17 @@ var duckHuntUI=function(){
                     self.game.newRound();
                     self.running = false; 
                     console.log("ROUND OVER >>>>>>>>>");
+                    setTimeout(() => {
+                        console.log("ROUND START >>>>>>>>>");
+                        self.running = true; 
+                    }, 2000);
                 }
                 
                 var i;
                 for (i = 0; i < self.game.list.length; i++) {
                     if (self.game.list[i] !== null) {
-                        moveTarget(i);
+                        self.handleOutOfPlayArea(i);
+                        moveTarget(i);  
                     }
                 }
             }
@@ -51,6 +55,8 @@ var duckHuntUI=function(){
             
         $('body').mousemove(function(event){
             if (self.running == true) {
+                $('#crossHair').css("top", self.game.player.yPos  - self.coordinateOffset );
+                $('#crossHair').css("left", self.game.player.xPos- self.coordinateOffset);
                 var x = event.pageX - self.game.player.width/2;
                 var y = event.pageY - self.game.player.height/2;
                 angle = self.calculateGunAngle(x,y);
@@ -205,49 +211,52 @@ var duckHuntUI=function(){
         return angle;
     };
 
+    this.handleOutOfPlayArea = function(index){
+       
+    }
 
     //funciton that takes in an index and moves the target object from the list of targets in the scene
    
     function moveTarget(index) {
-        var jqName = self.game.list[index].jqName(); 
-        if(self.game.list[index].isHit == true){
-            self.game.list[index].makefall();
-            $(jqName).css("top", self.game.list[index].yPos);
-
-
-            //check to see if the target should be removed
-            if(self.game.list[index].dead == true){
-                var divID = document.getElementById(self.game.list[index].name);
-                document.getElementById("playBoard").removeChild(divID);
-                self.game.list[index] = null;
-                console.log(self.game.list);
+        if(self.game.list[index].xPos > 850 || self.game.list[index].xPos < -10){
+            if (self.game.list[index].type == "goose"){
+                self.game.strikes += 1;
+                self.updateStrikeIcon(self.game.strikes);
             }
+            var divID = document.getElementById(self.game.list[index].name);
+            document.getElementById("playBoard").removeChild(divID);
+            self.game.list[index] = null;
         }
-        else{ 
-            self.game.list[index].updatePosition();
-            $(jqName).css("left", self.game.list[index].xPos);
-            $(jqName).css("top", self.game.list[index].yPos);
-            if(self.game.list[index].direction == "left"){
-                $(jqName).css("transform", "scaleX(-1)");
-                //document.getElementById("playBoard").removeChild(document.getElementById(self.game.list[index].name));
-                //self.game.list[index] = null;
+        else{
+            var jqName = self.game.list[index].jqName(); 
+            if(self.game.list[index].isHit == true){
+                self.game.list[index].makefall();
+                $(jqName).css("top", self.game.list[index].yPos);
+    
+    
+                //check to see if the target should be removed
+                if(self.game.list[index].dead == true){
+                    var divID = document.getElementById(self.game.list[index].name);
+                    document.getElementById("playBoard").removeChild(divID);
+                    self.game.list[index] = null;
+                    console.log(self.game.list);
+                }
             }
-            else{
-                $(jqName).css("transform", "scaleX(1)");
+            else{ 
+                self.game.list[index].updatePosition();
+                $(jqName).css("left", self.game.list[index].xPos);
+                $(jqName).css("top", self.game.list[index].yPos);
+                if(self.game.list[index].direction == "left"){
+                    $(jqName).css("transform", "scaleX(-1)");
+                    //document.getElementById("playBoard").removeChild(document.getElementById(self.game.list[index].name));
+                    //self.game.list[index] = null;
+                }
+                else{
+                    $(jqName).css("transform", "scaleX(1)");
+                }
             }
-        }
 
-    }
-    //adds more elements to target list creating more divs 
-    function restack(){
-        var i = 0;
-        for(i = 0; i < self.game.list.length; i++){
-            if(self.game.list[i] !== null){
-                return 0;
-            }
         }
-        console.log("got here");
-        self.game.spawnTargets(3);
 
     }
 

@@ -35,6 +35,7 @@ var duckHuntScene = function(){
         if (self.minTicksBetweenSpawn > 10){
             self.minTicksBetweenSpawn -= 5;
         }
+        self.list = [];
         self.ticksSinceSpawn = 0;
         self.strikes = 0;
         self.round += 1;
@@ -50,7 +51,12 @@ var duckHuntScene = function(){
 
     this.roundOver = function(){
         if (self.spawnCount >= self.maxTargets){
-            return true;
+           for (i=0; i < self.list.length; i++){
+               if (self.list[i] != null){
+                   return false;
+               }
+           }
+           return true;
         }
         else{
             return false;
@@ -94,20 +100,7 @@ var duckHuntScene = function(){
             img.src = './images/animated-goose-image-left-right.gif';
             img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
-        /*
-        var maxAngleDown = Math.round((180/Math.PI) * Math.atan(1-yLoc/700));
        
-        
-        var maxAngleUp = -1*(Math.round((180/Math.PI) * Math.atan(yLoc/700)));
-        
-        var angle = Math.round(Math.random() * (maxAngleUp - maxAngleDown) + maxAngleDown);
-
-        console.log("type: " + type + " yPos: "+ yLoc + " angle: " + angle + " speed: " + speed);
-        console.log("Up: " + maxAngleUp);
-        console.log("Down: " + maxAngleDown);
-        console.log("X increment: " + Math.abs(Math.ceil((speed*Math.cos(Math.PI/180*angle)))));
-        console.log("Y increment: " +  Math.floor(speed*Math.sin(Math.PI/180*angle)));
-        */
 
        console.log("type: " + type + " yPos: "+ yLoc + " x_speed: " + x_speed);
        var num_ticks = Math.floor(800 / x_speed);
@@ -154,8 +147,7 @@ var player = function(game){
     this.game = game;
     this.crossHairRadius = 15;
     self.currentDegree = 5;
-    this.xCrossHairOff = 0;
-    this.yCrossHairOff = 0;
+   
     this.xPos = 500;
     this.yPos = 500;
     this.ammo = 6;
@@ -179,12 +171,7 @@ var player = function(game){
     this.setPostion=function(xPos, yPos){
         //Implement Crosshair wiggle, recoil?
     }
-    this.randomizeCrossHairLocation = function(){
-        self.xCrossHairOff = Math.round(self.crossHairRadius*Math.cos(self.currentDegree * Math.PI /180));
-        self.yCrossHairOff = Math.round(self.crossHairRadius*Math.sin(self.currentDegree* Math.PI /180));
-        this.currentDegree = this.currentDegree + 5;
 
-    }
 
     this.updatePosition= function(xPos, yPos){
         
@@ -215,8 +202,8 @@ var player = function(game){
         self.ammo -= 1;
         var noHit = true;
         console.log("Ammo: " + self.ammo);
-        var crossHairLocX = self.xPos + self.xCrossHairOff;
-        var crossHairLocY = self.yPos + self.yCrossHairOff;
+        var crossHairLocX = self.xPos;
+        var crossHairLocY = self.yPos;
         var len = self.game.list.length;
         //console.log(this.list);
         for(let i = 0; i < len; i++){
@@ -248,8 +235,7 @@ var player = function(game){
                 } else if(type == "eagle" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+25){
                     //self.game.newTarget();
                     //alert("hit");
-                    noHit = false;
-                    this.game.score +=1
+                    self.game.strikes += 1;
                     setTimeout(function(){
                         $('#honk').trigger("play");
                         $('#honk').prop("currentTime", 0);
@@ -264,9 +250,6 @@ var player = function(game){
                     //
                 }
             }
-        }
-        if(noHit){
-            self.game.strikes +=1;
         }
       
     }

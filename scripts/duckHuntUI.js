@@ -101,7 +101,7 @@ var duckHuntUI=function(){
                         $('#reload').prop("currentTime", 0);
                         setTimeout(function(){
                             self.game.player.canShoot = true; 
-                        },700);
+                        },500);
                         
                     },1000);
                     
@@ -281,7 +281,7 @@ var duckHuntUI=function(){
                     } else {
                         self.game.player.reloading = false; 
                     }
-                }, i *500);
+                }, i *400);
             
             }
         }

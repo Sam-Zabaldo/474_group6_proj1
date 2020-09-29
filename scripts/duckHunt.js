@@ -237,8 +237,8 @@ var player = function(game){
                     //alert("hit");
                     self.game.strikes += 1;
                     setTimeout(function(){
-                        $('#honk').trigger("play");
-                        $('#honk').prop("currentTime", 0);
+                        $('#eagle-sound').trigger("play");
+                        $('#eagle-sound').prop("currentTime", 0);
                         
 
                         console.log("HIT! removing:" +id);

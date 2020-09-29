@@ -226,7 +226,7 @@ var duckHuntUI=function(){
         else{ 
             self.game.list[index].updatePosition();
             $(jqName).css("left", self.game.list[index].xPos);
-            //$(jqName).css("top", self.game.list[index].yPos);
+            $(jqName).css("top", self.game.list[index].yPos);
             if(self.game.list[index].direction == "left"){
                 $(jqName).css("transform", "scaleX(-1)");
                 //document.getElementById("playBoard").removeChild(document.getElementById(self.game.list[index].name));

@@ -7,12 +7,12 @@ var duckHuntScene = function(){
 
     //Round Logic
     this.strikes = 0;
-    this.minTicksBetweenSpawn = 30;
+    this.minTicksBetweenSpawn = 100;
     this.ticksSinceSpawn = 0;
     this.round = 1;
-    this.maxTargets = 3;
+    this.maxTargets = 10;
     this.spawnCount = 0;
-    this.maxSpeed = 5;
+    this.maxSpeed = 10;
  
     this.initialize = function(){
         //this.spawnTargets(3);
@@ -61,12 +61,12 @@ var duckHuntScene = function(){
     //function that generates a target
     this.newTarget = function(){
         console.log("Spawning New Bird>>>>>>");
-        var yLoc = Math.floor((Math.random() * 500));
+        var yLoc = Math.floor((Math.random() * 450));
         var xLoc = 0;
         var name = "";
         var type = "";
         var direction = "";
-        var speed = Math.round(Math.random() * self.maxSpeed);
+        var speed = Math.round(Math.random() * self.maxSpeed) + 1;
 
         var img = document.createElement('img');
 
@@ -103,6 +103,8 @@ var duckHuntScene = function(){
         console.log("type: " + type + " yPos: "+ yLoc + " angle: " + angle + " speed: " + speed);
         console.log("Up: " + maxAngleUp);
         console.log("Down: " + maxAngleDown);
+        console.log("X increment: " + Math.floor((speed*Math.cos(angle))));
+        console.log("Y increment: " + Math.floor((speed*Math.sin(angle))));
         this.list.push(new target(type,name,xLoc,yLoc, direction, angle,speed));
         document.getElementById("playBoard").appendChild(img);
     }
@@ -252,7 +254,7 @@ var target = function(type, name, startX,startY, direction,angle,speed){
     this.angle = angle;
     this.speed = speed;
     this.name = name;
-    this.speed = 1;
+    this.speed = speed;
     this.xPos = startX;
     this.yPos = startY;
     this.type = type;
@@ -292,20 +294,17 @@ var target = function(type, name, startX,startY, direction,angle,speed){
     this.updatePosition = function(){
         //var distance=self.speed*time;
         if (this.direction == "right"){
-            self.xPos=self.xPos+self.speed;
-            //self.yPos=self.yPos+5;
-            if(self.xPos == 700){
-                this.direction = "left"
-
-            }
+           
+            self.xPos += Math.abs(Math.ceil((self.speed*Math.cos(Math.PI/180*self.angle))));
+            self.yPos += Math.floor(self.speed*Math.sin(Math.PI/180*self.angle));
+          
         }
         else if(this.direction =="left"){
-            self.xPos = self.xPos -self.speed;
-            if(self.xPos == 0){
-                this.direction = "right";
-            }
-        }
+            self.xPos -= Math.abs(Math.ceil(self.speed*Math.cos(Math.PI/180*self.angle)));
+            self.yPos -= Math.floor(self.speed*Math.sin(Math.PI/180*self.angle));
+      
         
+        }
     }
 
     //function that makes the target fall and then sets it to dead so it can be removed

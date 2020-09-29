@@ -61,12 +61,13 @@ var duckHuntScene = function(){
     //function that generates a target
     this.newTarget = function(){
         console.log("Spawning New Bird>>>>>>");
-        var yLoc = Math.floor((Math.random() * 450));
+        var yLoc = Math.floor((Math.random() * 500));
         var xLoc = 0;
         var name = "";
         var type = "";
         var direction = "";
-        var speed = Math.round(Math.random() * self.maxSpeed) + 1;
+        Math.floor(Math.random() * (max - min + 1) + min);
+        var x_speed = Math.round(Math.random() * (self.maxSpeed - 3 + 1) + 3);
 
         var img = document.createElement('img');
 
@@ -93,19 +94,50 @@ var duckHuntScene = function(){
             img.src = './images/animated-goose-image-left-right.gif';
             img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
-        var maxAngleDown = Math.floor((180/Math.PI) * Math.atan(1-yLoc/700));
+        /*
+        var maxAngleDown = Math.round((180/Math.PI) * Math.atan(1-yLoc/700));
        
         
-        var maxAngleUp = -1*(Math.floor((180/Math.PI) * Math.atan(yLoc/700)));
+        var maxAngleUp = -1*(Math.round((180/Math.PI) * Math.atan(yLoc/700)));
         
-        var angle = Math.floor(Math.random() * (maxAngleUp - maxAngleDown) + maxAngleDown);
+        var angle = Math.round(Math.random() * (maxAngleUp - maxAngleDown) + maxAngleDown);
 
         console.log("type: " + type + " yPos: "+ yLoc + " angle: " + angle + " speed: " + speed);
         console.log("Up: " + maxAngleUp);
         console.log("Down: " + maxAngleDown);
-        console.log("X increment: " + Math.floor((speed*Math.cos(angle))));
-        console.log("Y increment: " + Math.floor((speed*Math.sin(angle))));
-        this.list.push(new target(type,name,xLoc,yLoc, direction, angle,speed));
+        console.log("X increment: " + Math.abs(Math.ceil((speed*Math.cos(Math.PI/180*angle)))));
+        console.log("Y increment: " +  Math.floor(speed*Math.sin(Math.PI/180*angle)));
+        */
+
+       console.log("type: " + type + " yPos: "+ yLoc + " x_speed: " + x_speed);
+       var num_ticks = Math.floor(800 / x_speed);
+       var min = 0;
+       var max = 0;
+       var minI = 0;
+       var maxI = 0;
+       var minFound = false;
+       var maxFound = false;
+       
+       while (!minFound || !maxFound){
+           minI -=1;
+           maxI +=1;
+           console.log((num_ticks * maxI) + yLoc)
+           if ((num_ticks * maxI) + yLoc > 500  && !maxFound){
+               max = maxI - 1;
+               maxFound = true;
+               console.log("Setting max to: " + max)
+           }
+           if ((num_ticks * minI) + yLoc < 20 && !minFound ){
+               minFound = true;
+               min = minI + 1;
+               console.log("Setting min to: " + min);
+           }
+       }
+       console.log("MIN: " + min);
+       console.log("MAX: " + max);
+       y_speed = Math.floor(Math.random() * (max - min + 1) + min);
+
+        this.list.push(new target(type,name,xLoc,yLoc, direction,x_speed, y_speed));
         document.getElementById("playBoard").appendChild(img);
     }
 
@@ -249,12 +281,12 @@ var player = function(game){
     }
 }
 
-var target = function(type, name, startX,startY, direction,angle,speed){
+var target = function(type, name, startX,startY, direction,x_speed, y_speed){
     var self = this;
-    this.angle = angle;
-    this.speed = speed;
+    this.x_speed = x_speed;
+    this.y_speed = y_speed;
     this.name = name;
-    this.speed = speed;
+ 
     this.xPos = startX;
     this.yPos = startY;
     this.type = type;
@@ -294,17 +326,33 @@ var target = function(type, name, startX,startY, direction,angle,speed){
     this.updatePosition = function(){
         //var distance=self.speed*time;
         if (this.direction == "right"){
+            self.xPos += self.x_speed;
+        }
+        else{
+            self.xPos -= self.x_speed;
+        }
+        self.yPos += y_speed;
+        
+        /*
+        if (this.direction == "right"){
            
             self.xPos += Math.abs(Math.ceil((self.speed*Math.cos(Math.PI/180*self.angle))));
-            self.yPos += Math.floor(self.speed*Math.sin(Math.PI/180*self.angle));
+            self.yPos += Math.round(self.speed*Math.sin(Math.PI/180*self.angle));
           
         }
         else if(this.direction =="left"){
             self.xPos -= Math.abs(Math.ceil(self.speed*Math.cos(Math.PI/180*self.angle)));
-            self.yPos -= Math.floor(self.speed*Math.sin(Math.PI/180*self.angle));
+            if (Math.round(self.speed*Math.sin(Math.PI/180*self.angle)) > 0){
+                self.yPos += Math.floor(self.speed*Math.sin(Math.PI/180*self.angle));
+            }
+            else{
+                self.yPos += Math.ceil(self.speed*Math.sin(Math.PI/180*self.angle));
+            }
+            
       
         
         }
+        */
     }
 
     //function that makes the target fall and then sets it to dead so it can be removed

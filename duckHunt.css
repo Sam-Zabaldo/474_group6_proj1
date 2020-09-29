@@ -44,6 +44,7 @@ button {
     z-index: 0;
 }
 #playBoard{
+    overflow: hidden;
     cursor: none;
     position: relative;
     width: 800px;    

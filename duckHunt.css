@@ -234,3 +234,9 @@ button {
     top: 45%; 
     left: 40%; 
 }
+
+#roundComplete{
+   display:none;
+    width: 80%;
+    margin:10%;
+}

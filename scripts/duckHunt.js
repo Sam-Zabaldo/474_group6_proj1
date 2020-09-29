@@ -12,7 +12,7 @@ var duckHuntScene = function(){
     this.round = 1;
     this.maxTargets = 10;
     this.spawnCount = 0;
-    this.maxSpeed = 10;
+    this.maxSpeed = 8;
  
     this.initialize = function(){
         //this.spawnTargets(3);
@@ -41,7 +41,7 @@ var duckHuntScene = function(){
         self.round += 1;
         self.maxTargets *= 2;
         self.spawnCount = 0;
-        self.maxSpeed += Math.round(self.maxSpeed * .5);
+        self.maxSpeed += 2;
 
     }
 
@@ -316,26 +316,6 @@ var target = function(type, name, startX,startY, direction,x_speed, y_speed){
         }
         self.yPos += y_speed;
         
-        /*
-        if (this.direction == "right"){
-           
-            self.xPos += Math.abs(Math.ceil((self.speed*Math.cos(Math.PI/180*self.angle))));
-            self.yPos += Math.round(self.speed*Math.sin(Math.PI/180*self.angle));
-          
-        }
-        else if(this.direction =="left"){
-            self.xPos -= Math.abs(Math.ceil(self.speed*Math.cos(Math.PI/180*self.angle)));
-            if (Math.round(self.speed*Math.sin(Math.PI/180*self.angle)) > 0){
-                self.yPos += Math.floor(self.speed*Math.sin(Math.PI/180*self.angle));
-            }
-            else{
-                self.yPos += Math.ceil(self.speed*Math.sin(Math.PI/180*self.angle));
-            }
-            
-      
-        
-        }
-        */
     }
 
     //function that makes the target fall and then sets it to dead so it can be removed

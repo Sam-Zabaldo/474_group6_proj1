@@ -29,24 +29,12 @@ var duckHuntUI=function(){
                     $("#roundNumber").text("Round 1");
                 }
                if (self.game.roundOver()){
-                    self.game.newRound();
-                    $("#roundNumber").text("Round " + self.game.round);
-                    self.running = false;
-                    self.game.player.ammo = 6; 
-                    self.updateAmmoIcon(); 
-                    console.log("ROUND OVER >>>>>>>>>");
-                    $("#roundComplete").fadeIn("fast");
-                    setTimeout(() => {
-                        $("#roundComplete").fadeOut("slow");
-                        console.log("ROUND START >>>>>>>>>");
-                        self.running = true; 
-                    }, 2000);
+                    self.roundOverUpdate();
+                   
                 }
-                
-                var i;
-                for (i = 0; i < self.game.list.length; i++) {
+            
+                for (var i = 0; i < self.game.list.length; i++) {
                     if (self.game.list[i] !== null) {
-                        self.handleOutOfPlayArea(i);
                         moveTarget(i);  
                     }
                 }
@@ -174,7 +162,7 @@ var duckHuntUI=function(){
                 audio.item(i).volume = self.volume / 100; 
             }
             $("#vol").text(self.volume + "%");
-        };
+        }
 
 
     }
@@ -188,6 +176,21 @@ var duckHuntUI=function(){
             }
         }
     }
+    this.roundOverUpdate = function(){
+        self.game.newRound();
+        $("#roundNumber").text("Round " + self.game.round);
+        self.running = false;
+        console.log("ROUND OVER >>>>>>>>>");
+        $("#roundComplete").fadeIn("fast");
+        setTimeout(() => {
+            self.updateAmmoIcon(6); 
+            self.updateStrikeIcon(0);
+            $("#roundComplete").fadeOut("slow");
+            console.log("ROUND START >>>>>>>>>");
+            self.running = true; 
+        }, 2000);
+    }
+
     this.updateStrikeIcon = function(num_strikes){
         for (i =1; i <= 3; i++){
             if (i > num_strikes){
@@ -214,9 +217,7 @@ var duckHuntUI=function(){
         return angle;
     };
 
-    this.handleOutOfPlayArea = function(index){
-       
-    }
+ 
 
     //funciton that takes in an index and moves the target object from the list of targets in the scene
    

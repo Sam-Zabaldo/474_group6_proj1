@@ -10,7 +10,7 @@ var duckHuntScene = function(){
     this.minTicksBetweenSpawn = 100;
     this.ticksSinceSpawn = 0;
     this.round = 1;
-    this.maxTargets = 10;
+    this.maxTargets = 3;
     this.spawnCount = 0;
     this.maxSpeed = 8;
  
@@ -35,6 +35,7 @@ var duckHuntScene = function(){
         if (self.minTicksBetweenSpawn > 10){
             self.minTicksBetweenSpawn -= 5;
         }
+        self.player.ammo = 6;
         self.list = [];
         self.ticksSinceSpawn = 0;
         self.strikes = 0;
@@ -72,9 +73,7 @@ var duckHuntScene = function(){
         var name = "";
         var type = "";
         var direction = "";
-        Math.floor(Math.random() * (max - min + 1) + min);
         var x_speed = Math.round(Math.random() * (self.maxSpeed - 3 + 1) + 3);
-
         var img = document.createElement('img');
 
         if (Math.random() > .5){
@@ -85,7 +84,6 @@ var duckHuntScene = function(){
             direction = "left";
             xLoc = 750;
         }
-
         if(Math.random() > .75){
             type = "eagle";
             name = "eagle"+this.list.length.toString()+"";
@@ -100,38 +98,43 @@ var duckHuntScene = function(){
             img.src = './images/animated-goose-image-left-right.gif';
             img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
-       
-
        console.log("type: " + type + " yPos: "+ yLoc + " x_speed: " + x_speed);
-       var num_ticks = Math.floor(800 / x_speed);
-       var min = 0;
-       var max = 0;
-       var minI = 0;
-       var maxI = 0;
-       var minFound = false;
-       var maxFound = false;
-       
-       while (!minFound || !maxFound){
-           minI -=1;
-           maxI +=1;
-           console.log((num_ticks * maxI) + yLoc)
-           if ((num_ticks * maxI) + yLoc > 500  && !maxFound){
-               max = maxI - 1;
-               maxFound = true;
-               console.log("Setting max to: " + max)
-           }
-           if ((num_ticks * minI) + yLoc < 20 && !minFound ){
-               minFound = true;
-               min = minI + 1;
-               console.log("Setting min to: " + min);
-           }
-       }
+      
+       var [min, max] = self.findPossibleYSpeed(yLoc, x_speed);
        console.log("MIN: " + min);
        console.log("MAX: " + max);
        y_speed = Math.floor(Math.random() * (max - min + 1) + min);
 
         this.list.push(new target(type,name,xLoc,yLoc, direction,x_speed, y_speed));
         document.getElementById("playBoard").appendChild(img);
+    }
+
+
+    this.findPossibleYSpeed = function(yLoc, x_speed){
+        var num_ticks = Math.floor(800 / x_speed);
+        var min = 0;
+        var max = 0;
+        var minI = 0;
+        var maxI = 0;
+        var minFound = false;
+        var maxFound = false;
+
+        while (!minFound || !maxFound){
+            minI -=1;
+            maxI +=1;
+            console.log((num_ticks * maxI) + yLoc)
+            if ((num_ticks * maxI) + yLoc > 500  && !maxFound){
+                max = maxI - 1;
+                maxFound = true;
+                console.log("Setting max to: " + max)
+            }
+            if ((num_ticks * minI) + yLoc < 20 && !minFound ){
+                minFound = true;
+                min = minI + 1;
+                console.log("Setting min to: " + min);
+            }
+        }
+        return [min,max];
     }
 
     this.reset=function(){
@@ -177,11 +180,6 @@ var player = function(game){
         
         self.xPos = xPos;
         self.yPos = yPos;
-        /*
-        self.xPos = self.xPos + Math.floor(self.crossHairRadius*Math.cos(self.currentDegree * Math.PI /180));
-        self.yPos = self.yPos + Math.floor(self.crossHairRadius*Math.sin(self.currentDegree* Math.PI /180));
-        this.currentDegree = this.currentDegree + 20;
-        */
 
         if (xPos > self.game.width - self.game.coordinateOffset){
             this.xPos = self.game.width - self.game.coordinateOffset;

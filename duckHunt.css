@@ -236,6 +236,7 @@ button {
 }
 
 #roundComplete{
+    position: absolute;
    display:none;
     width: 80%;
     margin:10%;

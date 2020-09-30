@@ -61,6 +61,20 @@ var duckHuntAltStart = function () {
 var duckHuntAdviceStart = function () {
 
     $(menuLayer).hide();
+
+    $(roundNumber).css({
+        "border-color":"red"
+    });
+
+    $(xBox).css({
+        "border-color":"yellow"
+    });
+
+    $(ammoBox).css({
+        "border-color":"green"
+    });
+
+
     $(adviceLayer).show();
 
 }
@@ -68,6 +82,17 @@ var duckHuntAdviceStart = function () {
 var duckHuntAdviceEnd = function() {
 
     $(adviceLayer).hide();
+
+    $(roundNumber).css({
+        "border-color":"transparent"
+    });
+    $(xBox).css({
+        "border-color":"transparent"
+    });
+    $(ammoBox).css({
+        "border-color":"transparent"
+    });
+
     $(menuLayer).show();
 
 }

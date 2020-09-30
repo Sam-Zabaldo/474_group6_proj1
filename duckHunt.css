@@ -43,6 +43,12 @@ button {
     background-color: rgba(0, 0, 0, 0.4); 
 }
 
+#roundAdvice{
+    border-color: red;
+    border-width: 5px;
+    border-style: solid;
+}
+
 
 #gameBoard{
     position: absolute; 
@@ -146,6 +152,9 @@ button {
     justify-content: space-evenly;
     justify-content: center;
     display: flex;
+    border-color : transparent;
+    border-width: 5px;
+    border-style: solid;
      
 }
 .x{
@@ -159,6 +168,9 @@ button {
     justify-content: space-evenly;
     justify-content: center;
     display: flex;
+    border-color : transparent;
+    border-width: 5px;
+    border-style: solid;
      
 }
 .ammoIcon{
@@ -174,6 +186,9 @@ button {
     justify-content: center;
     display: flex;
     flex-direction: column;
+    border-color : transparent;
+    border-width: 5px;
+    border-style: solid;
 }
 
 

@@ -10,7 +10,7 @@ var duckHuntScene = function(){
     this.minTicksBetweenSpawn = 100;
     this.ticksSinceSpawn = 0;
     this.round = 1;
-    this.maxTargets = 3;
+    this.maxTargets = 5;
     this.spawnCount = 0;
     this.maxSpeed = 8;
  
@@ -46,8 +46,20 @@ var duckHuntScene = function(){
 
     }
 
-    this.gameOver = function(){
+    this.isGameOver = function(){
         return self.strikes >= 3;
+    }
+    this.gameOver = function(){
+        //Set game attributes to default values
+        self.player.ammo = 6;
+        self.list = [];
+        self.ticksSinceSpawn = 0;
+        self.strikes = 0;
+        self.round = 1;
+        self.score = 0;
+        self.maxTargets = 5;
+        self.spawnCount = 0;
+        self.maxSpeed = 8;
     }
 
     this.roundOver = function(){

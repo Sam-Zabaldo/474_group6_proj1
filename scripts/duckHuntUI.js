@@ -22,11 +22,12 @@ var duckHuntUI=function(){
                     self.game.spawnCount+= 1;
                     self.game.ticksSinceSpawn = 0;
                 }
-                if (self.game.gameOver()){
+                if (self.game.isGameOver()){
                     clearInterval(startClock);
                     self.removeTargets();
                     self.endGame();
-                    $("#roundNumber").text("Round 1");
+                    self.game.gameOver();
+                   
                 }
                if (self.game.roundOver()){
                     self.roundOverUpdate();
@@ -304,12 +305,21 @@ var duckHuntUI=function(){
     }
 
     this.endGame = function (){
-        $(menuLayer).toggle();
-    
+        $("#roundNumber").text("Round 1");
+        console.log("here")
+        self.updateAmmoIcon(6); 
+        self.updateStrikeIcon(0);
+        
+        
         $(gunBox).hide();
         $(crossHair).hide();
        // alert(gameUI.game.score);
         self.running = false;
+        $("#gameOver").fadeIn("fast");
+        setTimeout(() => {
+            $("#gameOver").fadeOut("slow");
+            $(menuLayer).toggle();
+        }, 2000);
     }
 
 

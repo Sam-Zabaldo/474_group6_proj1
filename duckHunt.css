@@ -264,6 +264,13 @@ button {
     margin:10%;
 }
 
+#gameOver{
+    position: absolute;
+    display:none;
+    width: 80%;
+    margin:10%;
+}
+
 #mainMenu{
     position: absolute; 
     height: 60%; 

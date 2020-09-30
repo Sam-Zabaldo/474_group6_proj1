@@ -11,36 +11,35 @@ button {
     display: block;
 }
 
+#mainContent{
+    position: absolute; 
+    width: 800px; 
+    height: 620px; 
+    border-style: solid; 
+    border-width: 15%; 
+}
+
 #menuLayer{
     width: 800px;    
     height: 620px;
-    border-style:solid;
-    border-width:1px;
-    border-color:black;
-    margin:0;
-    padding:0;
     z-index: 99;
     position: absolute;
+    background-color: rgba(0, 0, 0, 0.4); 
 }
 
-#mainMenu{
-    margin: 0;
+/* #mainMenu{
     position: absolute;
     top: 50%;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
+    /* -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+} */
 
 
 #gameBoard{
+    position: absolute; 
     width: 800px;    
-    height: 600px;
-    border-style:solid;
-    border-width:1px;
-    border-color:black;
-    margin:0;
-    padding:0;
+    height: 620px;
     z-index: 0;
 }
 #playBoard{
@@ -49,28 +48,26 @@ button {
     position: relative;
     width: 800px;    
     height: 540px;
-    border-style:solid;
-    border-width:5px;
+    /* border-style:solid;
+    border-width:5px; */
     background-image: url(images/duck_hunt_background.jpg);
     background-size: contain;
     background-color: rgb(37, 117, 37);
     border-color:black;
     margin:0;
-    padding:0;
-    
+    /* padding:-5px; */
+    position: absolute; 
 }
 
 #infoBoard{
-    margin-top: -60px;
     position: absolute;
     height: 80px;
     width: 800px;
+    top: 540px; 
     display: flex;
-    background-color: salmon;
     flex-direction: row;
     justify-content: space-evenly;
     z-index: 0;
-     
 }
 .hiddenAudio{
     display: none;
@@ -112,24 +109,17 @@ button {
     height: 400px;
 }
 
-
-
 #infoBoard{
-    border-style:solid;
-    border-width:5px;
+    /* border-style:solid;
+    border-width:5px; */
     border-color:#7fcf0e;
-    margin:0;
-    padding:0;
-
-    margin-top: -60px;
     position: absolute;
     height: 80px;
-    width: 801px;
+    width: 800px;
     display: flex;
     background-color: #877000;
     flex-direction: row;
     justify-content: space-around;
-     
 }
 
 #gunImage{
@@ -186,12 +176,18 @@ button {
     margin-top: 8px;
     color: white;
     height:80%;
-    padding: 15px 32px;
+    width: 14%; 
+    /* padding: 15px 32px; */
     text-align: center;
     font-family: "Arial Black", Gadget, sans-serif;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    transition: border-radius 0.25s; 
+}
+
+#pauseButton:hover{
+    border-radius: 0px;
 }
 
 #pauseMenu {
@@ -201,11 +197,15 @@ button {
     left: 25%;
     width: 50%; 
     height: 50%; 
-    background-color: #c0f378; 
+    background-color: rgba(127, 207, 14, 0.75); 
     z-index: 2;
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 200%; 
     text-align: center;
+    border-style: solid;
+    border-width: 5px; 
+    border-color: #7fcf0e; 
+    border-radius: 15px; 
 }
 
 .vol {
@@ -213,10 +213,22 @@ button {
     width: 20%; 
     top: 25%; 
     font-size: 60%; 
+    border-radius: 20px; 
+    transition: border-radius 0.25s, background-color 0.25s, color 0.25s, content 0.25s; 
+}
+
+.vol:hover{
+    border-radius: 0px; 
 }
 
 #volDown {
     left: 10%; 
+}
+
+#volDown:hover {
+    background-color: #d33e3e; 
+    color: white; 
+    content: "hello"; 
 }
 
 #vol {
@@ -230,9 +242,19 @@ button {
     left: 70%; 
 }
 
+#volUp:hover{
+    background-color:#7fcf0e; 
+    color: white; 
+}
+
 #volMute {
     top: 45%; 
     left: 40%; 
+}
+
+#volMute:hover{
+    background-color: black; 
+    color: white; 
 }
 
 #roundComplete{
@@ -240,4 +262,51 @@ button {
    display:none;
     width: 80%;
     margin:10%;
+}
+
+#mainMenu{
+    position: absolute; 
+    height: 60%; 
+    width: 50%; 
+    top: 5%; 
+    left: 25%; 
+}
+
+.mainMenuButton{
+    position: absolute; 
+    height: 15%; 
+    width: 30%; 
+    left: 35%; 
+    border-radius: 25px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 100%; 
+    background-color: #9cdfbd; 
+    border-width: 100%; 
+    transition: background-color 0.75s, border-radius 0.25s;
+}
+.mainMenuButton:hover{
+    background-color: #7fcf0e; 
+    border-radius: 5px; 
+}
+
+#normGameButton{
+    top: 35%; 
+}
+
+#altGameButton{
+    top: 55%; 
+}
+
+#aboutButton{
+    top: 75%; 
+}
+
+#title {
+    position: absolute; 
+    width: 80%; 
+    height: 20%; 
+    top: 7.5%; 
+    left: 10%; 
+    background-image: url("images/duck_hunt_title.jpg"); 
+    background-size: contain; 
 }

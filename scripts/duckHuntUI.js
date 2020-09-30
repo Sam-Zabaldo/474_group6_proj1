@@ -303,10 +303,12 @@ var duckHuntUI=function(){
     }
 
     this.endGame = function (){
-        $(menuLayer).toggle();
+        //$(menuLayer).toggle();
     
         $(gunBox).hide();
         $(crossHair).hide();
+
+        $(endscreenLayer).show();
        // alert(gameUI.game.score);
         self.running = false;
     }

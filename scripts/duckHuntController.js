@@ -10,6 +10,7 @@ var duckHuntControllerStart = function() {
     $(altGameButton).click(function(){ duckHuntAltStart () });
     $(aboutButton).click(function(){ duckHuntAdviceStart () });
     $(adviceBackButton).click(function(){ duckHuntAdviceEnd () });
+    $(endScreenReturnButton).click(function(){ duckHuntEndscreenEnd () });
     duckHuntMenuStart();
 
 }
@@ -38,6 +39,7 @@ var duckHuntNormStart = function () {
     $(crossHair).toggle();
 
 
+    console.log("game start");
     gameUI = new duckHuntUI ();
 
 }
@@ -58,6 +60,7 @@ var duckHuntAltStart = function () {
 //Displays instructions screen
 var duckHuntAdviceStart = function () {
 
+    $(menuLayer).hide();
     $(adviceLayer).show();
 
 }
@@ -65,6 +68,15 @@ var duckHuntAdviceStart = function () {
 var duckHuntAdviceEnd = function() {
 
     $(adviceLayer).hide();
+    $(menuLayer).show();
 
 }
+
+var duckHuntEndscreenEnd = function() {
+
+    $(endscreenLayer).hide();
+    $(menuLayer).show();
+
+}
+
 

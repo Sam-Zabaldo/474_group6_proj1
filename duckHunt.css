@@ -27,6 +27,14 @@ button {
     background-color: rgba(0, 0, 0, 0.4); 
 }
 
+#endscreenLayer{
+    width: 800px;    
+    height: 620px;
+    z-index: 103;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
 #adviceLayer{
     width: 800px;    
     height: 620px;

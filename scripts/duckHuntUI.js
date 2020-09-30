@@ -311,9 +311,14 @@ var duckHuntUI=function(){
         self.updateStrikeIcon(0);
         
         
+
         $(gunBox).hide();
         $(crossHair).hide();
-       // alert(gameUI.game.score);
+
+        $(roundResult).text("You made it to round:" + self.game.round);
+        $(scoreResult).text("With a score of :" + gameUI.game.score);
+
+        $(endscreenLayer).show();
         self.running = false;
         $("#gameOver").fadeIn("fast");
         setTimeout(() => {

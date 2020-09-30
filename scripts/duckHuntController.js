@@ -9,7 +9,8 @@ var duckHuntControllerStart = function() {
     $(normGameButton).click(function(){ duckHuntNormStart () });
     $(altGameButton).click(function(){ duckHuntAltStart () });
     $(aboutButton).click(function(){ duckHuntAdviceStart () });
-
+    $(adviceBackButton).click(function(){ duckHuntAdviceEnd () });
+    $(endScreenReturnButton).click(function(){ duckHuntEndscreenEnd () });
     duckHuntMenuStart();
 
 }
@@ -20,8 +21,6 @@ duckHuntMenuStart = function () {
 
     $(gunBox).hide();
     $(crossHair).hide();
-    //$(gooseRight).hide();
-    //$(eagle).hide();
 
     $(menuLayer).show();
 
@@ -38,10 +37,9 @@ var duckHuntNormStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
-   // $(gooseRight).toggle();
-  //  $(eagle).toggle();
-    //$(infoBoard).toggle();
 
+
+    console.log("game start");
     gameUI = new duckHuntUI ();
 
 }
@@ -53,9 +51,7 @@ var duckHuntAltStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
-  //  $(gooseRight).toggle();
-    //$(eagle).toggle();
-    //$(infoBoard).toggle();
+
 
     altUI =  new duckHuntUI ();
 
@@ -64,7 +60,48 @@ var duckHuntAltStart = function () {
 //Displays instructions screen
 var duckHuntAdviceStart = function () {
 
-    alert("Advice");
+    $(menuLayer).hide();
+
+    $(roundNumber).css({
+        "border-color":"red"
+    });
+
+    $(xBox).css({
+        "border-color":"yellow"
+    });
+
+    $(ammoBox).css({
+        "border-color":"green"
+    });
+
+
+    $(adviceLayer).show();
 
 }
+
+var duckHuntAdviceEnd = function() {
+
+    $(adviceLayer).hide();
+
+    $(roundNumber).css({
+        "border-color":"transparent"
+    });
+    $(xBox).css({
+        "border-color":"transparent"
+    });
+    $(ammoBox).css({
+        "border-color":"transparent"
+    });
+
+    $(menuLayer).show();
+
+}
+
+var duckHuntEndscreenEnd = function() {
+
+    $(endscreenLayer).hide();
+    $(menuLayer).show();
+
+}
+
 

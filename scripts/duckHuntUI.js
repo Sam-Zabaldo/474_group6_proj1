@@ -41,9 +41,11 @@ var duckHuntUI=function(){
                 }
             }
 
+            // TODO: DELTE ME AFTER TEST
+            $("#testStatus").text(self.running); 
+
         },20);
 
-    
             
         $('body').mousemove(function(event){
             if (self.running == true) {

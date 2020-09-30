@@ -27,15 +27,6 @@ button {
     background-color: rgba(0, 0, 0, 0.4); 
 }
 
-/* #mainMenu{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
-} */
-
-
 #gameBoard{
     position: absolute; 
     width: 800px;    
@@ -316,4 +307,10 @@ button {
     left: 10%; 
     background-image: url("images/duck_hunt_title.jpg"); 
     background-size: contain; 
+}
+
+#testStatus{
+    position: absolute; 
+    top: 630px; 
+    left: 150px; 
 }

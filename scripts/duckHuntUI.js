@@ -303,13 +303,14 @@ var duckHuntUI=function(){
     }
 
     this.endGame = function (){
-        //$(menuLayer).toggle();
-    
+
         $(gunBox).hide();
         $(crossHair).hide();
 
+        $(roundResult).text("You made it to round:" + self.game.round);
+        $(scoreResult).text("With a score of :" + gameUI.game.score);
+
         $(endscreenLayer).show();
-       // alert(gameUI.game.score);
         self.running = false;
     }
 

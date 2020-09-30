@@ -22,18 +22,18 @@ button {
 #menuLayer{
     width: 800px;    
     height: 620px;
-    z-index: 99;
+    z-index: 101;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4); 
 }
 
-/* #mainMenu{
+#adviceLayer{
+    width: 800px;    
+    height: 620px;
+    z-index: 102;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    /* -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
-} */
+    background-color: rgba(0, 0, 0, 0.4); 
+}
 
 
 #gameBoard{

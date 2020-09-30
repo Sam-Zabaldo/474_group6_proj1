@@ -9,7 +9,7 @@ var duckHuntControllerStart = function() {
     $(normGameButton).click(function(){ duckHuntNormStart () });
     $(altGameButton).click(function(){ duckHuntAltStart () });
     $(aboutButton).click(function(){ duckHuntAdviceStart () });
-
+    $(adviceBackButton).click(function(){ duckHuntAdviceEnd () });
     duckHuntMenuStart();
 
 }
@@ -20,8 +20,6 @@ duckHuntMenuStart = function () {
 
     $(gunBox).hide();
     $(crossHair).hide();
-    //$(gooseRight).hide();
-    //$(eagle).hide();
 
     $(menuLayer).show();
 
@@ -38,9 +36,7 @@ var duckHuntNormStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
-   // $(gooseRight).toggle();
-  //  $(eagle).toggle();
-    //$(infoBoard).toggle();
+
 
     gameUI = new duckHuntUI ();
 
@@ -53,9 +49,7 @@ var duckHuntAltStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
-  //  $(gooseRight).toggle();
-    //$(eagle).toggle();
-    //$(infoBoard).toggle();
+
 
     altUI =  new duckHuntUI ();
 
@@ -64,7 +58,13 @@ var duckHuntAltStart = function () {
 //Displays instructions screen
 var duckHuntAdviceStart = function () {
 
-    alert("Advice");
+    $(adviceLayer).show();
+
+}
+
+var duckHuntAdviceEnd = function() {
+
+    $(adviceLayer).hide();
 
 }
 

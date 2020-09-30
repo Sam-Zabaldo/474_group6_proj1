@@ -36,6 +36,7 @@ button {
 }
 
 #adviceLayer{
+    color: white;
     width: 800px;    
     height: 620px;
     z-index: 102;
@@ -49,6 +50,21 @@ button {
     border-style: solid;
 }
 
+#strikesAdvice{
+    border-color: yellow;
+    border-width: 5px;
+    border-style: solid;
+}
+
+#ammoAdvice{
+    border-color: green;
+    border-width: 5px;
+    border-style: solid;
+}
+
+#endscreen{
+    color: white;
+}
 
 #gameBoard{
     position: absolute; 

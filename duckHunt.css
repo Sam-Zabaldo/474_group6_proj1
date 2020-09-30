@@ -13,14 +13,10 @@ button {
 
 #menuLayer{
     width: 800px;    
-    height: 620px;
-    border-style:solid;
-    border-width:1px;
-    border-color:black;
-    margin:0;
-    padding:0;
+    height: 680px;
     z-index: 99;
     position: absolute;
+    background-color: rgba(0, 0, 0, 0.4); 
 }
 
 #mainMenu{
@@ -239,4 +235,50 @@ button {
    display:none;
     width: 80%;
     margin:10%;
+}
+
+#mainMenu{
+    position: absolute; 
+    height: 50%; 
+    width: 50%; 
+    top: 200px; 
+}
+
+.mainMenuButton{
+    position: absolute; 
+    height: 15%; 
+    width: 30%; 
+    left: 35%; 
+    border-radius: 25px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 100%; 
+    background-color: #9cdfbd; 
+    border-width: 100%; 
+    transition: background-color 0.75s, border-radius 0.25s;
+}
+.mainMenuButton:hover{
+    background-color: #7fcf0e; 
+    border-radius: 5px; 
+}
+
+#normGameButton{
+    top: 35%; 
+}
+
+#altGameButton{
+    top: 55%; 
+}
+
+#aboutButton{
+    top: 75%; 
+}
+
+#title {
+    position: absolute; 
+    width: 80%; 
+    height: 20%; 
+    top: 7.5%; 
+    left: 10%; 
+    background-image: url("images/duck_hunt_title.jpg"); 
+    background-size: contain; 
 }

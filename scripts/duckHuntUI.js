@@ -115,6 +115,7 @@ var duckHuntUI=function(){
                 self.running = false; 
                 $("#pauseMenu").show(); 
                 $("#pauseButton").text("Unpause"); 
+                $("#pauseButton").css("background-color", "#d33e3e"); 
                 $("#playBoard").css("cursor", "auto"); 
                 $("#crossHair").hide(); 
                 if (self.game.player.reloading == true) {
@@ -126,6 +127,7 @@ var duckHuntUI=function(){
                 self.running = true; 
                 $("#pauseMenu").hide(); 
                 $("#pauseButton").text("Pause"); 
+                $("#pauseButton").css("background-color", "#7fcf0e"); 
                 $("#playBoard").css("cursor", "none"); 
                 $("#crossHair").show(); 
                 if (self.reloadInterrupted == true) {

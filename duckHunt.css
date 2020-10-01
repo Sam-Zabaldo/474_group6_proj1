@@ -35,6 +35,54 @@ button {
     background-color: rgba(0, 0, 0, 0.4); 
 }
 
+#endscreen{
+    position: absolute; 
+    height: 60%; 
+    width: 50%; 
+    top: 5%; 
+    left: 25%; 
+    color: white;
+}
+
+#tyfp {
+    position: absolute; 
+    width: 80%;
+    height: 35%; 
+    left: 10%; 
+    top: 15%; 
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 300%; 
+    text-align: center;
+    border-style: solid; 
+    border-width: 5%; 
+}
+
+#roundResult {
+    position: absolute; 
+    width: 80%;
+    height: 35%; 
+    left: 10%; 
+    top: 60%; 
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 150%; 
+    text-align: center;
+}
+
+#scoreResult {
+    position: absolute; 
+    width: 80%;
+    height: 35%; 
+    left: 10%; 
+    top: 75%; 
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 150%; 
+    text-align: center;
+}
+
+#endScreenReturnButton {
+    top: 90%;
+}
+
 #adviceLayer{
     color: white;
     width: 800px;    
@@ -60,10 +108,6 @@ button {
     border-color: green;
     border-width: 5px;
     border-style: solid;
-}
-
-#endscreen{
-    color: white;
 }
 
 #gameBoard{
@@ -253,6 +297,7 @@ button {
     top: 25%; 
     font-size: 60%; 
     border-radius: 20px; 
+    background-color: #9cdfbd;
     transition: border-radius 0.25s, background-color 0.25s, color 0.25s, content 0.25s; 
 }
 
@@ -265,7 +310,7 @@ button {
 }
 
 #volDown:hover {
-    background-color: #d33e3e; 
+    background-color: #d33e3e;  
     color: white; 
     content: "hello"; 
 }
@@ -275,6 +320,7 @@ button {
     left: 40%; 
     line-height: 25%;
     font-size: 65%; 
+    background-color: rgba(0, 0, 0, 0); 
 }
 
 #volUp {
@@ -288,24 +334,41 @@ button {
 
 #volMute {
     top: 45%; 
-    left: 40%; 
+    left: 40%;  
+}
+
+#unpauseButton {
+    width: 30%; 
+    height: 20%; 
+    top: 67.5%; 
+    left: 15%; 
+    border-radius: 0px; 
+    background-color: #d33e3e;
+    color: white; 
+    transition: border-radius 0.25s, background-color 0.25s; 
+}
+
+#unpauseButton:hover {
+    border-radius: 15px; 
+    background-color: #7fcf0e;
+    color: white; 
 }
 
 #quitButton {
-    width: 35%; 
+    width: 30%; 
     height: 20%; 
     top: 67.5%; 
-    left: 32.5%;
+    left: 55%;
     border-radius: 0px; 
     background-color: #d33e3e;
-    transition: border-radius 1.5s, background-color 1.5s, color 0.25s, font-size 1.5s; 
+    color: white; 
+    transition: border-radius 1.5s, background-color 1.5s, font-size 1.5s; 
 }
 
 #quitButton:hover {
     border-radius: 30px; 
     background-color: #681111;
-    color: white; 
-    font-size: 80%; 
+    font-size: 100%; 
 }
 
 #volMute:hover{

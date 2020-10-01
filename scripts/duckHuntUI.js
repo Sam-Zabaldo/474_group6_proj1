@@ -167,7 +167,19 @@ var duckHuntUI=function(){
             }
             $("#vol").text(self.volume + "%");
         }
-
+        $("#unpauseButton").on("click", function() {
+            self.running = true; 
+            self.game.player.canShoot = true;
+            $("#pauseMenu").hide(); 
+            $("#pauseButton").text("Pause"); 
+            $("#pauseButton").css("background-color", "#7fcf0e"); 
+            $("#playBoard").css("cursor", "none"); 
+            $("#crossHair").show(); 
+            if (self.reloadInterrupted == true) {
+                self.handleReload(); 
+                self.reloadInterrupted = false; 
+            }
+        });
         $("#quitButton").on("click", function() {
             self.game.strikes = 4; 
             self.running = true; 
@@ -363,8 +375,8 @@ var duckHuntUI=function(){
         $(gunBox).hide();
         $(crossHair).hide();
 
-        $(roundResult).text("You made it to round: " + self.game.round);
-        $(scoreResult).text("With a score of: " + gameUI.game.score);
+        $(roundResult).text("Round: " + self.game.round);
+        $(scoreResult).text("Score: " + gameUI.game.score);
 
         self.running = false;
         $("#gameOver").fadeIn("fast");

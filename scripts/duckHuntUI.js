@@ -43,7 +43,6 @@ var duckHuntUI=function(){
 
         },20);
 
-    
             
         $('body').mousemove(function(event){
             if (self.running == true) {
@@ -102,6 +101,7 @@ var duckHuntUI=function(){
             // pause
             if (self.running == true) {
                 self.running = false; 
+                self.game.player.canShoot = false; 
                 $("#pauseMenu").show(); 
                 $("#pauseButton").text("Unpause"); 
                 $("#pauseButton").css("background-color", "#d33e3e"); 
@@ -114,6 +114,7 @@ var duckHuntUI=function(){
             // unpause
             } else {
                 self.running = true; 
+                self.game.player.canShoot = true;
                 $("#pauseMenu").hide(); 
                 $("#pauseButton").text("Pause"); 
                 $("#pauseButton").css("background-color", "#7fcf0e"); 
@@ -169,6 +170,42 @@ var duckHuntUI=function(){
 
 
     }
+
+    this.playAgain = function() {
+        var startClock = window.setInterval(function(){
+            if (self.running == true) {
+                if (self.game.player.ammo > 6) {
+                    self.game.player.ammo = 6; 
+                }
+               
+                self.game.ticksSinceSpawn += 1;
+                if (self.game.ticksSinceSpawn >= self.game.minTicksBetweenSpawn +  Math.floor(Math.random() * 400)){
+                    self.game.spawnTargets(1);
+                    self.game.spawnCount+= 1;
+                    self.game.ticksSinceSpawn = 0;
+                }
+                if (self.game.isGameOver()){
+                    clearInterval(startClock);
+                    self.removeTargets();
+                    self.endGame();
+                    self.game.gameOver();
+                   
+                }
+               if (self.game.roundOver()){
+                    self.roundOverUpdate();
+                   
+                }
+            
+                for (var i = 0; i < self.game.list.length; i++) {
+                    if (self.game.list[i] !== null) {
+                        moveTarget(i);  
+                    }
+                }
+            }
+
+        },20);
+    }
+
     this.updateAmmoIcon = function(ammoAmt){
         for (i =1; i <= 6; i++){
             if (i > ammoAmt){
@@ -325,7 +362,7 @@ var duckHuntUI=function(){
             $("#gameOver").fadeOut("slow");
             $(menuLayer).toggle();
         }, 2000);
-    }
+        }
 
 
 

@@ -272,7 +272,7 @@ button {
 
 .mainMenuButton{
     position: absolute; 
-    height: 15%; 
+    height: 10%; 
     width: 30%; 
     left: 35%; 
     border-radius: 25px;
@@ -288,24 +288,23 @@ button {
 }
 
 #normGameButton{
-    top: 35%; 
+    top: 60%; 
 }
 
 #altGameButton{
-    top: 55%; 
+    top: 75%; 
 }
 
 #aboutButton{
-    top: 75%; 
+    top: 90%; 
 }
 
 #title {
     position: absolute; 
-    width: 80%; 
-    height: 20%; 
-    top: 7.5%; 
-    left: 10%; 
-    background-image: url("images/duck_hunt_title.jpg"); 
+    width: 80%;
+    height: 50%; 
+    left: 15%; 
+    background-image: url("images/goose_hunt.png"); 
     background-size: contain; 
 }
 

@@ -1,7 +1,7 @@
 var gameUI;
 var altUI;
 var adviceUI;
-
+var gameStarted = false; 
 
 //initializes the overall program
 var duckHuntControllerStart = function() {
@@ -42,7 +42,13 @@ var duckHuntNormStart = function () {
   //  $(eagle).toggle();
     //$(infoBoard).toggle();
 
-    gameUI = new duckHuntUI ();
+    if (!gameStarted) {
+        gameUI = new duckHuntUI(); 
+        gameStarted = true; 
+    } else {
+        gameUI.running = true; 
+        gameUI.playAgain(); 
+    }
 
 }
 
@@ -57,7 +63,13 @@ var duckHuntAltStart = function () {
     //$(eagle).toggle();
     //$(infoBoard).toggle();
 
-    altUI =  new duckHuntUI ();
+    if (!gameStarted) {
+        gameUI = new duckHuntUI(); 
+        gameStarted = true; 
+    } else {
+        gameUI.running = true; 
+        gameUI.playAgain(); 
+    }
 
 }
 

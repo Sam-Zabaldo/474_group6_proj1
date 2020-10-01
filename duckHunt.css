@@ -291,6 +291,23 @@ button {
     left: 40%; 
 }
 
+#quitButton {
+    width: 35%; 
+    height: 20%; 
+    top: 67.5%; 
+    left: 32.5%;
+    border-radius: 0px; 
+    background-color: #d33e3e;
+    transition: border-radius 1.5s, background-color 1.5s, color 0.25s, font-size 1.5s; 
+}
+
+#quitButton:hover {
+    border-radius: 30px; 
+    background-color: #681111;
+    color: white; 
+    font-size: 80%; 
+}
+
 #volMute:hover{
     background-color: black; 
     color: white; 
@@ -298,7 +315,7 @@ button {
 
 #roundComplete{
     position: absolute;
-   display:none;
+    display:none;
     width: 80%;
     margin:10%;
 }

@@ -168,6 +168,17 @@ var duckHuntUI=function(){
             $("#vol").text(self.volume + "%");
         }
 
+        $("#quitButton").on("click", function() {
+            self.game.strikes = 4; 
+            self.running = true; 
+            self.game.player.canShoot = true;
+            $("#pauseMenu").hide(); 
+            $("#pauseButton").text("Pause"); 
+            $("#pauseButton").css("background-color", "#7fcf0e"); 
+            $("#playBoard").css("cursor", "none"); 
+            $("#crossHair").show(); 
+        });
+
 
     }
 

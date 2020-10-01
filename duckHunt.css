@@ -46,9 +46,9 @@ button {
 
 #tyfp {
     position: absolute; 
-    width: 80%;
-    height: 35%; 
-    left: 10%; 
+    width: 65%;
+    height: 32%; 
+    left: 17.5%; 
     top: 15%; 
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 300%; 
@@ -86,28 +86,77 @@ button {
 #adviceLayer{
     color: white;
     width: 800px;    
-    height: 620px;
+    height: 540px;
     z-index: 102;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4); 
 }
 
+#adviceBoard{
+    position: absolute; 
+    height: 72.5%; 
+    width: 90%; 
+    top: 5%; 
+    left: 5%; 
+    color: white;
+}
+
+#welcome{
+    position: absolute; 
+    width: 65%;
+    height: 12.5%; 
+    left: 17.5%; 
+    top: 7.5%; 
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 250%; 
+    text-align: center;
+    border-style: solid; 
+    border-width: 5%; 
+}
+
+.instruction{
+    position: absolute; 
+    width: 30%; 
+    height: 25%; 
+    top: 57.5%; 
+    border-style: solid; 
+    border-width: 5%; 
+    background-color: rgba(255, 255, 255, 0.25); 
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-align: center;
+}
+
+#goal {
+    border-color: white; 
+    width: 45%; 
+    left: 26.5%;
+    top: 25%; 
+    font-size: 150%; 
+    line-height: 60%; 
+}
+
 #roundAdvice{
     border-color: red;
-    border-width: 5px;
-    border-style: solid;
+    left: 0%; 
+    line-height: 150%; 
 }
 
 #strikesAdvice{
     border-color: yellow;
-    border-width: 5px;
-    border-style: solid;
+    left: 35%; 
+    line-height: 120%;
 }
 
 #ammoAdvice{
-    border-color: green;
-    border-width: 5px;
-    border-style: solid;
+    border-color: lightgreen;
+    left: 70%; 
+    line-height: 150%; 
+}
+
+#adviceBackButton{
+    top: 90%;
+    left: 41.667%; 
+    width: 16.667%; 
 }
 
 #gameBoard{
@@ -260,7 +309,6 @@ button {
     color: white;
     height:80%;
     width: 14%; 
-    /* padding: 15px 32px; */
     text-align: center;
     font-family: "Arial Black", Gadget, sans-serif;
     text-decoration: none;

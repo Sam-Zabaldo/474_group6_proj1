@@ -41,12 +41,19 @@
 
         <div hidden id = "adviceLayer">
             <div id = "adviceBoard">
-                <h2>Welcome to Duck Hunt!</h2>
-                <p>Your goal is to shoot the geese</p>
-                <p id = roundAdvice>The game is played in rounds</p>
-                <p id = strikesAdvice>Three strikes and you're out</p>
-                <p id = ammoAdvice> Watch your ammo</p>
-                <button id= "adviceBackButton">Back</button>
+                <div id="welcome">Welcome to Goose Hunt</div>
+                <div id="goal" class="instruction"><br>Shoot Geese!<br><br><br><br>Don't shoot Eagles!
+                </div>
+                <div id = roundAdvice class="instruction"><br>Shoot enough Geese to advance the round!</div>
+                <div id = strikesAdvice class="instruction">If a Goose makes it to the edge of the screen, you get a strike.
+                    If you shoot an Eagle, you get a strike.
+                    The game ends when you get 3 strikes. 
+                </div>
+                <div id = ammoAdvice class="instruction">Shooting takes Ammo.
+                    <br>Press the R key to reload. 
+                    <br>If you run out of ammo, it will reload automatically.
+                </div>
+                <button id= "adviceBackButton" class="mainMenuButton">Back</button>
             </div>
         </div>
 

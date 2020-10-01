@@ -84,7 +84,7 @@ var duckHuntAdviceStart = function () {
     });
 
     $(ammoBox).css({
-        "border-color":"green"
+        "border-color":"lightgreen"
     });
 
 

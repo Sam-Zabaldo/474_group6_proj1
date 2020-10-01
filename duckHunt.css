@@ -325,6 +325,7 @@ button {
     display:none;
     width: 80%;
     margin:10%;
+    z-index: 106; 
 }
 
 #mainMenu{

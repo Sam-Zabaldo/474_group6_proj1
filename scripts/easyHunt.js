@@ -174,6 +174,7 @@ var player = function(game){
 
     }
     this.updateAmmo = function(num){
+        /*
         if (self.ammo + num > 6 || self.ammo + num < 0){
             return false;
         }
@@ -181,6 +182,7 @@ var player = function(game){
             self.ammo += num;
             return true;
         }
+        */
     }
 
     this.setPostion=function(xPos, yPos){

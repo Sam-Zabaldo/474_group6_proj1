@@ -66,17 +66,19 @@ var easyHuntUI=function(){
         
         $("#playBoard").mousedown(function(e){
             if (self.running == true) {
+                /*
                 if (self.game.player.ammo == 0){
                     self.handleReload();
                 }
-                else if (self.game.player.canShoot && !self.game.player.reloading){
+                */
+                //else{
                     $('#gunshot').trigger("play");
                     $('#gunshot').prop("currentTime", 0);
-                    self.game.player.canShoot = false;
+                    //self.game.player.canShoot = false;
                     //console.log("mouse clicked x: " + e.clientX + " y: " + e.clientY);
                     
                     self.game.player.fireGun();
-                    self.updateAmmoIcon(self.game.player.ammo);
+                    //self.updateAmmoIcon(self.game.player.ammo);
                     self.updateStrikeIcon(self.game.strikes);
 
                     $('#minigunImage').attr("src", "./images/minigun-fire.png")
@@ -84,6 +86,7 @@ var easyHuntUI=function(){
                         $('#minigunImage').attr("src", "./images/minigun.png") 
                     },100);
 
+                    /*
                     setTimeout(function(){
                         $('#reload').trigger("play");
                         $('#reload').prop("currentTime", 0);
@@ -92,8 +95,9 @@ var easyHuntUI=function(){
                         },500);
                         
                     },1000);
+                    */
                     
-                }
+                //}
             }
         });
 

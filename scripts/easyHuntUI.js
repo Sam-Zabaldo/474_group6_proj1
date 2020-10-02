@@ -376,7 +376,7 @@ var easyHuntUI=function(){
         $(crossHair).hide();
 
         $(roundResult).text("Round: " + self.game.round);
-        $(scoreResult).text("Score: " + gameUI.game.score);
+        $(scoreResult).text("Score: " + altUI.game.score);
 
         self.running = false;
         $("#gameOver").fadeIn("fast");

@@ -2,6 +2,7 @@ var gameUI;
 var altUI;
 var adviceUI;
 var gameStarted = false; 
+var altStarted = false;
 
 //initializes the overall program
 var duckHuntControllerStart = function() {
@@ -25,7 +26,6 @@ duckHuntMenuStart = function () {
 
     $(menuLayer).show();
 
-    //$(infoBoard).toggle();
 
     console.log("Menu start");
 
@@ -53,7 +53,6 @@ var duckHuntNormStart = function () {
 
 //begins alternate game if we want to do this
 var duckHuntAltStart = function () {
-
     $(menuLayer).hide();
 
     $(minigunBox).toggle();
@@ -61,12 +60,12 @@ var duckHuntAltStart = function () {
 
     console.log("alt game start");
 
-    if (!gameStarted) {
-        gameUI = new easyHuntUI(); 
-        gameStarted = true; 
-    } else {
-        gameUI.running = true; 
-        gameUI.playAgain(); 
+    if (!altStarted) {
+        altUI = new easyHuntUI(); 
+        altStarted = true; 
+    } else { 
+        altUI.running = true; 
+        altUI.playAgain(); 
     }
 
 }

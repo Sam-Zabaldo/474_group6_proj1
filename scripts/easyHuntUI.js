@@ -17,7 +17,7 @@ var easyHuntUI=function(){
                     self.game.player.ammo = 6; 
                 }
 
-                if (self.isFiring == true && ((self.game.ticksSinceSpawn % 4) == 0)){
+                if (self.isFiring == true && ((self.game.ticksSinceSpawn % 2) == 0)){
                     //console.log("firing");
                     self.game.player.fireGun();
                     self.updateStrikeIcon(self.game.strikes);
@@ -226,7 +226,7 @@ var easyHuntUI=function(){
                     self.game.player.ammo = 6; 
                 }
 
-                if (self.isFiring == true && ((self.game.ticksSinceSpawn % 4) == 0) ){
+                if (self.isFiring == true && ((self.game.ticksSinceSpawn % 2) == 0) ){
                     console.log("firing");
                     self.game.player.fireGun();
                     self.updateStrikeIcon(self.game.strikes);
@@ -272,6 +272,7 @@ var easyHuntUI=function(){
     }
     this.roundOverUpdate = function(){
         self.game.newRound();
+        $('#minigun-sound').trigger("pause");
         $("#roundNumber").text("Round " + self.game.round);
         self.running = false;
         //console.log("ROUND OVER >>>>>>>>>");
@@ -397,6 +398,7 @@ var easyHuntUI=function(){
 
     this.endGame = function (){
         $("#roundNumber").text("Round 1");
+        $('#minigun-sound').trigger("pause");
         //console.log("here")
         self.updateAmmoIcon(6); 
         self.updateStrikeIcon(0);

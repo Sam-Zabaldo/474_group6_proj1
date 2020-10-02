@@ -6,19 +6,26 @@ var easyHuntUI=function(){
     this.reloadInterrupted = false; 
     this.volume = 75; 
     this.muted = false; 
+    this.isFiring = false;
 
     this.initialize=function(){
         self.game = new easyHuntScene();
-        console.log(typeof null);
+        //console.log(typeof null);
         var startClock = window.setInterval(function(){
             if (self.running == true) {
                 if (self.game.player.ammo > 6) {
                     self.game.player.ammo = 6; 
                 }
+
+                if (self.isFiring == true && ((self.game.ticksSinceSpawn % 4) == 0)){
+                    //console.log("firing");
+                    self.game.player.fireGun();
+                    self.updateStrikeIcon(self.game.strikes);
+                }
                
                 self.game.ticksSinceSpawn += 1;
                 if (self.game.ticksSinceSpawn >= self.game.minTicksBetweenSpawn +  Math.floor(Math.random() * 400)){
-                    self.game.spawnTargets(5);
+                    self.game.spawnTargets(3);
                     self.game.spawnCount+= 1;
                     self.game.ticksSinceSpawn = 0;
                 }
@@ -66,11 +73,16 @@ var easyHuntUI=function(){
         
         $("#playBoard").mousedown(function(e){
             if (self.running == true) {
+                console.log("begin firing");
+                self.isFiring = true;
+                $('#minigunImage').attr("src", "./images/minigun-fire.png")
+                $('#minigun-sound').trigger("play");
+                
                 /*
                 if (self.game.player.ammo == 0){
                     self.handleReload();
                 }
-                */
+                
                 //else{
                     $('#gunshot').trigger("play");
                     $('#gunshot').prop("currentTime", 0);
@@ -98,7 +110,16 @@ var easyHuntUI=function(){
                     */
                     
                 //}
+                
             }
+        });
+
+        $("#playBoard").mouseup(function(e){
+            console.log("stop firing");
+            $('#minigunImage').attr("src", "./images/minigun.png");
+            $('#minigun-sound').trigger("pause");
+            self.isFiring = false;
+
         });
 
         $("#pauseButton").on("click", function() {
@@ -204,10 +225,16 @@ var easyHuntUI=function(){
                 if (self.game.player.ammo > 6) {
                     self.game.player.ammo = 6; 
                 }
-               
+
+                if (self.isFiring == true && ((self.game.ticksSinceSpawn % 4) == 0) ){
+                    console.log("firing");
+                    self.game.player.fireGun();
+                    self.updateStrikeIcon(self.game.strikes);
+                }
+
                 self.game.ticksSinceSpawn += 1;
                 if (self.game.ticksSinceSpawn >= self.game.minTicksBetweenSpawn +  Math.floor(Math.random() * 400)){
-                    self.game.spawnTargets(1);
+                    self.game.spawnTargets(3);
                     self.game.spawnCount+= 1;
                     self.game.ticksSinceSpawn = 0;
                 }
@@ -247,13 +274,13 @@ var easyHuntUI=function(){
         self.game.newRound();
         $("#roundNumber").text("Round " + self.game.round);
         self.running = false;
-        console.log("ROUND OVER >>>>>>>>>");
+        //console.log("ROUND OVER >>>>>>>>>");
         $("#roundComplete").fadeIn("fast");
         setTimeout(() => {
             self.updateAmmoIcon(6); 
             self.updateStrikeIcon(0);
             $("#roundComplete").fadeOut("slow");
-            console.log("ROUND START >>>>>>>>>");
+            //console.log("ROUND START >>>>>>>>>");
             self.running = true; 
         }, 2000);
     }
@@ -310,7 +337,7 @@ var easyHuntUI=function(){
                     var divID = document.getElementById(self.game.list[index].name);
                     document.getElementById("playBoard").removeChild(divID);
                     self.game.list[index] = null;
-                    console.log(self.game.list);
+                    //console.log(self.game.list);
                 }
             }
             else{ 
@@ -363,14 +390,14 @@ var easyHuntUI=function(){
                 var divID = document.getElementById(self.game.list[i].name);
                 document.getElementById("playBoard").removeChild(divID);
                 self.game.list[i] = null;
-                console.log(self.game.list);
+                //console.log(self.game.list);
             }
         }
     }
 
     this.endGame = function (){
         $("#roundNumber").text("Round 1");
-        console.log("here")
+        //console.log("here")
         self.updateAmmoIcon(6); 
         self.updateStrikeIcon(0);
         

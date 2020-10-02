@@ -79,7 +79,7 @@ var easyHuntScene = function(){
 
     //function that generates a target
     this.newTarget = function(){
-        console.log("Spawning New Bird>>>>>>");
+        //console.log("Spawning New Bird>>>>>>");
         var yLoc = Math.floor((Math.random() * 500));
         var xLoc = 0;
         var name = "";
@@ -110,11 +110,11 @@ var easyHuntScene = function(){
             img.src = './images/animated-goose-image-left-right.gif';
             img.setAttribute("style", "right: "+xLoc+"px;" + " top: "+yLoc+"px;" + " width: 90px; transform: scaleX(1); position: absolute;");
         }
-       console.log("type: " + type + " yPos: "+ yLoc + " x_speed: " + x_speed);
+       //console.log("type: " + type + " yPos: "+ yLoc + " x_speed: " + x_speed);
       
        var [min, max] = self.findPossibleYSpeed(yLoc, x_speed);
-       console.log("MIN: " + min);
-       console.log("MAX: " + max);
+       //console.log("MIN: " + min);
+       //console.log("MAX: " + max);
        y_speed = Math.floor(Math.random() * (max - min + 1) + min);
 
         this.list.push(new target(type,name,xLoc,yLoc, direction,x_speed, y_speed));
@@ -134,16 +134,16 @@ var easyHuntScene = function(){
         while (!minFound || !maxFound){
             minI -=1;
             maxI +=1;
-            console.log((num_ticks * maxI) + yLoc)
+            //console.log((num_ticks * maxI) + yLoc)
             if ((num_ticks * maxI) + yLoc > 500  && !maxFound){
                 max = maxI - 1;
                 maxFound = true;
-                console.log("Setting max to: " + max)
+                //console.log("Setting max to: " + max)
             }
             if ((num_ticks * minI) + yLoc < 20 && !minFound ){
                 minFound = true;
                 min = minI + 1;
-                console.log("Setting min to: " + min);
+                //console.log("Setting min to: " + min);
             }
         }
         return [min,max];
@@ -213,7 +213,7 @@ var player = function(game){
     this.fireGun = function(){
         self.ammo -= 1;
         var noHit = true;
-        console.log("Ammo: " + self.ammo);
+        //console.log("Ammo: " + self.ammo);
         var crossHairLocX = self.xPos;
         var crossHairLocY = self.yPos;
         var len = self.game.list.length;
@@ -226,8 +226,8 @@ var player = function(game){
                 var rect = div.getBoundingClientRect();
                 birdX = rect.left;
                 birdY = rect.top;
-                console.log("type: " + type+ "birdX: " + birdX + " birdY: " + birdY);
-                console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
+                //console.log("type: " + type+ "birdX: " + birdX + " birdY: " + birdY);
+                //console.log("crosshairX: " + crossHairLocX + " crossHairLocY: " + crossHairLocY);
                 if(type == "goose" && crossHairLocX >= birdX && crossHairLocX <= birdX+80 && crossHairLocY >= birdY && crossHairLocY <= birdY+30){
                     //self.game.newTarget();
                     noHit = false;
@@ -238,7 +238,7 @@ var player = function(game){
                         $('#honk').prop("currentTime", 0);
                         
 
-                        console.log("HIT! removing:" +id);
+                        //console.log("HIT! removing:" +id);
                     },300);
                     //area for modifing the hit target
                     self.game.list[i].isHit = true;
@@ -253,7 +253,7 @@ var player = function(game){
                         $('#eagle-sound').prop("currentTime", 0);
                         
 
-                        console.log("HIT! removing:" +id);
+                        //console.log("HIT! removing:" +id);
                     },300);
                     //area for modifing the hit target
                     //

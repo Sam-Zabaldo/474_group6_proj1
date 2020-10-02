@@ -57,7 +57,7 @@ var duckHuntUI=function(){
         });
         $('body').keypress(function(event){
             if (self.running == true) {
-                if (event.which==114){
+                if (event.which==114 && self.game.player.ammo <  6){
                         self.handleReload();
                         
                     }

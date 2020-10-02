@@ -222,7 +222,7 @@ button {
 
 }
 
-#gunBox{
+#gunBox, #minigunBox{
     position: absolute;
     transform: rotate(0deg);
     margin-top: 380px;

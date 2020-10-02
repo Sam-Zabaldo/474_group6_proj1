@@ -20,6 +20,7 @@ duckHuntMenuStart = function () {
 
 
     $(gunBox).hide();
+    $(minigunBox).hide();
     $(crossHair).hide();
 
     $(menuLayer).show();
@@ -55,13 +56,13 @@ var duckHuntAltStart = function () {
 
     $(menuLayer).hide();
 
-    $(gunBox).toggle();
+    $(minigunBox).toggle();
     $(crossHair).toggle();
 
     console.log("alt game start");
 
     if (!gameStarted) {
-        gameUI = new duckHuntUI(); 
+        gameUI = new easyHuntUI(); 
         gameStarted = true; 
     } else {
         gameUI.running = true; 

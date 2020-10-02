@@ -51,7 +51,7 @@ button {
     left: 17.5%; 
     top: 15%; 
     font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 300%; 
+    font-size: 250%; 
     text-align: center;
     border-style: solid; 
     border-width: 5%; 
@@ -450,11 +450,12 @@ button {
 .mainMenuButton{
     position: absolute; 
     height: 10%; 
-    width: 30%; 
-    left: 35%; 
+    width: 50%; 
+    left: 25%; 
     border-radius: 25px;
+    text-align: center;
     font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 100%; 
+    font-size: 90%; 
     background-color: #9cdfbd; 
     border-width: 100%; 
     transition: background-color 0.75s, border-radius 0.25s;

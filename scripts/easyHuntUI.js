@@ -71,7 +71,7 @@ var easyHuntUI=function(){
             }
         });
         
-        $("#playBoard").mousedown(function(e){
+        $("html").mousedown(function(e){
             if (self.running == true) {
                 console.log("begin firing");
                 self.isFiring = true;
@@ -114,7 +114,7 @@ var easyHuntUI=function(){
             }
         });
 
-        $("#playBoard").mouseup(function(e){
+        $("html").on("mouseup", function () {
             console.log("stop firing");
             $('#minigunImage').attr("src", "./images/minigun.png");
             $('#minigun-sound').trigger("pause");

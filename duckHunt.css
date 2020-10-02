@@ -301,7 +301,7 @@ button {
 }
 
 
-#pauseButton{
+#pauseButton, #altpauseButton{
     background-color: #7fcf0e; /* Green */
     border: none;
     border-radius: 10px;
@@ -317,11 +317,11 @@ button {
     transition: border-radius 0.25s; 
 }
 
-#pauseButton:hover{
+#pauseButton:hover, #altpauseButton:hover{
     border-radius: 0px;
 }
 
-#pauseMenu {
+#pauseMenu, #altpauseMenu{
     display: none; 
     position: absolute;
     top: 25%;
@@ -349,21 +349,21 @@ button {
     transition: border-radius 0.25s, background-color 0.25s, color 0.25s, content 0.25s; 
 }
 
-.vol:hover{
+.vol:hover, .altvol:hover{
     border-radius: 0px; 
 }
 
-#volDown {
+#volDown, #altvolDown {
     left: 10%; 
 }
 
-#volDown:hover {
+#volDown:hover, #altvolDown:hover {
     background-color: #d33e3e;  
     color: white; 
     content: "hello"; 
 }
 
-#vol {
+#vol, #altVol {
     top: 32%; 
     left: 40%; 
     line-height: 25%;
@@ -371,21 +371,21 @@ button {
     background-color: rgba(0, 0, 0, 0); 
 }
 
-#volUp {
+#volUp, #altvolUp {
     left: 70%; 
 }
 
-#volUp:hover{
+#volUp:hover, #altvolUp:hover{
     background-color:#7fcf0e; 
     color: white; 
 }
 
-#volMute {
+#volMute, #altvolMute {
     top: 45%; 
     left: 40%;  
 }
 
-#unpauseButton {
+#unpauseButton #altunpauseButton {
     width: 30%; 
     height: 20%; 
     top: 67.5%; 
@@ -396,13 +396,13 @@ button {
     transition: border-radius 0.25s, background-color 0.25s; 
 }
 
-#unpauseButton:hover {
+#unpauseButton:hover #altunpauseButton:hover {
     border-radius: 15px; 
     background-color: #7fcf0e;
     color: white; 
 }
 
-#quitButton {
+#quitButton, #altquitButton {
     width: 30%; 
     height: 20%; 
     top: 67.5%; 
@@ -413,13 +413,13 @@ button {
     transition: border-radius 1.5s, background-color 1.5s, font-size 1.5s; 
 }
 
-#quitButton:hover {
+#quitButton:hover, #altquitButton:hover {
     border-radius: 30px; 
     background-color: #681111;
     font-size: 100%; 
 }
 
-#volMute:hover{
+#volMute:hover, #altvolMute:hover{
     background-color: black; 
     color: white; 
 }

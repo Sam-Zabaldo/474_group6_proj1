@@ -19,6 +19,8 @@ var duckHuntControllerStart = function() {
 //starts the menu
 duckHuntMenuStart = function () {
 
+    $(altpauseButton).hide();
+
 
     $(gunBox).hide();
     $(minigunBox).hide();
@@ -38,6 +40,8 @@ var duckHuntNormStart = function () {
 
     $(gunBox).toggle();
     $(crossHair).toggle();
+    $(pauseButton).show();
+    $(altpauseButton).hide();
 
     console.log("game start");
 
@@ -57,6 +61,9 @@ var duckHuntAltStart = function () {
 
     $(minigunBox).toggle();
     $(crossHair).toggle();
+
+    $(altpauseButton).show();
+    $(pauseButton).hide();
 
     console.log("alt game start");
 

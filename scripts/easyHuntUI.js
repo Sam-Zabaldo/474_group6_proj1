@@ -122,14 +122,14 @@ var easyHuntUI=function(){
 
         });
 
-        $("#pauseButton").on("click", function() {
+        $("#altpauseButton").on("click", function() {
             // pause
             if (self.running == true) {
                 self.running = false; 
                 self.game.player.canShoot = false; 
-                $("#pauseMenu").show(); 
-                $("#pauseButton").text("Unpause"); 
-                $("#pauseButton").css("background-color", "#d33e3e"); 
+                $("#altpauseMenu").show(); 
+                $("#altpauseButton").text("Unpause"); 
+                $("#altpauseButton").css("background-color", "#d33e3e"); 
                 $("#playBoard").css("cursor", "auto"); 
                 $("#crossHair").hide(); 
                 if (self.game.player.reloading == true) {
@@ -140,9 +140,9 @@ var easyHuntUI=function(){
             } else {
                 self.running = true; 
                 self.game.player.canShoot = true;
-                $("#pauseMenu").hide(); 
-                $("#pauseButton").text("Pause"); 
-                $("#pauseButton").css("background-color", "#7fcf0e"); 
+                $("#altpauseMenu").hide(); 
+                $("alt#pauseButton").text("Pause"); 
+                $("#altpauseButton").css("background-color", "#7fcf0e"); 
                 $("#playBoard").css("cursor", "none"); 
                 $("#crossHair").show(); 
                 if (self.reloadInterrupted == true) {
@@ -152,7 +152,7 @@ var easyHuntUI=function(){
             }
         }); 
 
-        $("#volUp").on("click", function() {
+        $("#altvolUp").on("click", function() {
             if (self.volume <= 95) {
                 self.volume += 5; 
                 self.setAndShowVol();
@@ -162,7 +162,7 @@ var easyHuntUI=function(){
             }
             $("#volMute").text("Mute"); 
         }); 
-        $("#volDown").on("click", function() {
+        $("#altvolDown").on("click", function() {
             if (self.volume >= 5) {
                 self.volume -= 5; 
                 self.setAndShowVol(); 
@@ -172,7 +172,7 @@ var easyHuntUI=function(){
                 }
             } 
         });
-        $("#volMute").on("click", function() {
+        $("#altvolMute").on("click", function() {
             if (self.muted == false) {
                 self.muted = true; 
                 self.volume = 0; 
@@ -190,14 +190,14 @@ var easyHuntUI=function(){
             for (var i = 0; i < audio.length; i ++) {
                 audio.item(i).volume = self.volume / 100; 
             }
-            $("#vol").text(self.volume + "%");
+            $("#altvol").text(self.volume + "%");
         }
-        $("#unpauseButton").on("click", function() {
+        $("#altunpauseButton").on("click", function() {
             self.running = true; 
             self.game.player.canShoot = true;
-            $("#pauseMenu").hide(); 
-            $("#pauseButton").text("Pause"); 
-            $("#pauseButton").css("background-color", "#7fcf0e"); 
+            $("#altpauseMenu").hide(); 
+            $("#altpauseButton").text("Pause"); 
+            $("#altpauseButton").css("background-color", "#7fcf0e"); 
             $("#playBoard").css("cursor", "none"); 
             $("#crossHair").show(); 
             if (self.reloadInterrupted == true) {
@@ -205,13 +205,13 @@ var easyHuntUI=function(){
                 self.reloadInterrupted = false; 
             }
         });
-        $("#quitButton").on("click", function() {
+        $("#altquitButton").on("click", function() {
             self.game.strikes = 4; 
             self.running = true; 
             self.game.player.canShoot = true;
-            $("#pauseMenu").hide(); 
-            $("#pauseButton").text("Pause"); 
-            $("#pauseButton").css("background-color", "#7fcf0e"); 
+            $("#altpauseMenu").hide(); 
+            $("#altpauseButton").text("Pause"); 
+            $("#altpauseButton").css("background-color", "#7fcf0e"); 
             $("#playBoard").css("cursor", "none"); 
             $("#crossHair").show(); 
         });

@@ -76,6 +76,7 @@
             <div id="playBoard">
                 <img id="roundComplete" src ="./images/round-complete.png" />
                 <img id="gameOver" src ="./images/game-over.png" />
+
                 <div id="pauseMenu">
                     Pause
                     <button id="volDown" class="vol">Volume Down</button>
@@ -85,6 +86,17 @@
                     <button id="unpauseButton" class="vol">Unpause</button>
                     <button id="quitButton" class="vol">Quit</button>
                 </div>
+
+                <div id="altpauseMenu">
+                    Pause
+                    <button id="altvolDown" class="vol">Volume Down</button>
+                    <div id="altvol" class="vol">75%</div>
+                    <button id="altvolUp" class="vol">Volume Up</button>
+                    <button id="altvolMute" class="vol">Mute</button>
+                    <button id="altunpauseButton" class="vol">Unpause</button>
+                    <button id="altquitButton" class="vol">Quit</button>
+                </div>
+
                 <div hidden id="crossHair" class="image">
                 </div>
 
@@ -117,7 +129,8 @@
             </div>
             
             
-            <button type="button" id = "pauseButton">Pause</button>
+            <button type = "button" id = "pauseButton">Pause</button>
+            <button hidden type = "button" id = "altpauseButton">Pause</button>
            
         </div>
 

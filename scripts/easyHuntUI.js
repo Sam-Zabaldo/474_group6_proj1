@@ -271,7 +271,7 @@ var easyHuntUI=function(){
         $("#roundNumber").text("Round 1");
         $('#minigun-sound').trigger("pause");
         //console.log("here")
-        self.updateAmmoIcon(6); 
+        //self.updateAmmoIcon(6); 
         self.updateStrikeIcon(0);
         
         

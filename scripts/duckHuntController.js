@@ -147,6 +147,7 @@ duckHuntMenuStart = function () {
 
 //begins normal game
 var duckHuntNormStart = function () {
+    document.getElementById("ammoBox").style.display = 'block';
 
     $(menuLayer).hide();
 
@@ -173,6 +174,8 @@ var duckHuntAltStart = function () {
     //$(".ammoBox").toggle();
     $(minigunBox).toggle();
     $(crossHair).toggle();
+    //document.getElementById("ammoBox").innerHTML="";
+    document.getElementById("ammoBox").style.display = 'none';
 
     console.log("alt game start");
 

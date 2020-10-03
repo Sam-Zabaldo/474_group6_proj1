@@ -117,7 +117,7 @@ var duckHuntControllerStart = function() {
             $(pauseButton).click();
         }
         else if ($("#pauseMenu").is(":visible")){
-            $(unpauseButton).click();
+                $(unpauseButton).click();
         }
      });
 }

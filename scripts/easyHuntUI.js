@@ -75,7 +75,7 @@ var easyHuntUI=function(){
             if (self.running == true) {
                 console.log("begin firing");
                 self.isFiring = true;
-                $('#minigunImage').attr("src", "./images/minigun-fire.png")
+                $('#minigunImage').attr("src", "./images/minigun3-fire.png")
                 $('#minigun-sound').trigger("play");
                 
                 /*
@@ -116,7 +116,7 @@ var easyHuntUI=function(){
 
         $("html").on("mouseup", function () {
             console.log("stop firing");
-            $('#minigunImage').attr("src", "./images/minigun.png");
+            $('#minigunImage').attr("src", "./images/minigun3.png");
             $('#minigun-sound').trigger("pause");
             self.isFiring = false;
 

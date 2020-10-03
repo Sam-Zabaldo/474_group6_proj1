@@ -4,8 +4,7 @@ var duckHuntUI=function(){
     this.running = true;
     this.coordinateOffset = 10;
     this.reloadInterrupted = false; 
-    this.volume = 75; 
-    this.muted = false; 
+
 
     this.initialize=function(){
         self.game = new duckHuntScene();
@@ -99,15 +98,6 @@ var duckHuntUI=function(){
 
 
     }
-
-    this.setAndShowVol = function() {
-        var audio = document.getElementsByClassName("hiddenAudio");
-        for (var i = 0; i < audio.length; i ++) {
-            audio.item(i).volume = currentUI.volume / 100; 
-        }
-        $("#vol").text(currentUI.volume + "%");
-    }
-
 
     this.playAgain = function() {
         var startClock = window.setInterval(function(){

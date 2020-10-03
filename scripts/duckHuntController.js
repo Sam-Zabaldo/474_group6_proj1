@@ -4,9 +4,14 @@ var adviceUI;
 var currentUI;
 var gameStarted = false; 
 var altStarted = false;
+var volume;
+var muted;
 
 //initializes the overall program
 var duckHuntControllerStart = function() {
+
+    volume = 75; 
+    muted = false; 
 
 
     //Initialize the menu 
@@ -49,35 +54,35 @@ var duckHuntControllerStart = function() {
     }); 
 
     $("#volUp").on("click", function() {
-        if (currentUI.volume <= 95) {
-            currentUI.volume += 5; 
-            currentUI.setAndShowVol();
+        if (volume <= 95) {
+            volume += 5; 
+            setAndShowVol();
         } 
-        if (currentUI.muted == true) {
-            currentUI.muted = false; 
+        if (muted == true) {
+            muted = false; 
         }
         $("#volMute").text("Mute"); 
     }); 
     $("#volDown").on("click", function() {
-        if (currentUI.volume >= 5) {
-            currentUI.volume -= 5; 
-            currentUI.setAndShowVol(); 
+        if (volume >= 5) {
+            volume -= 5; 
+            setAndShowVol(); 
             if (currentUI.volume == 0) {
-                currentUI.muted = true; 
+                muted = true; 
                 $("#volMute").text("Unmute"); 
             }
         } 
     });
     $("#volMute").on("click", function() {
-        if (currentUI.muted == false) {
-            currentUI.muted = true; 
-            currentUI.volume = 0; 
-            currentUI.setAndShowVol(); 
+        if (muted == false) {
+            muted = true; 
+            volume = 0; 
+            setAndShowVol(); 
             $("#volMute").text("Unmute"); 
         } else {
-            currentUI.muted = false; 
-            currentUI.volume = 5; 
-            currentUI.setAndShowVol(); 
+            muted = false; 
+            volume = 5; 
+            setAndShowVol(); 
             $("#volMute").text("Mute"); 
         }
     }); 
@@ -107,6 +112,14 @@ var duckHuntControllerStart = function() {
         $("#crossHair").show(); 
     });
 
+}
+
+setAndShowVol = function() {
+    var audio = document.getElementsByClassName("hiddenAudio");
+    for (var i = 0; i < audio.length; i ++) {
+        audio.item(i).volume = volume / 100; 
+    }
+    $("#vol").text(volume + "%");
 }
 
 //starts the menu

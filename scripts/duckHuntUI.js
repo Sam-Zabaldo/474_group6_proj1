@@ -97,102 +97,17 @@ var duckHuntUI=function(){
             }
         });
 
-        $("#pauseButton").on("click", function() {
-            // pause
-            if (self.running == true) {
-                self.running = false; 
-                self.game.player.canShoot = false; 
-                $("#pauseMenu").show(); 
-                $("#pauseButton").text("Unpause"); 
-                $("#pauseButton").css("background-color", "#d33e3e"); 
-                $("#playBoard").css("cursor", "auto"); 
-                $("#crossHair").hide(); 
-                if (self.game.player.reloading == true) {
-                    self.reloadInterrupted = true; 
-                    self.game.player.reloading == false; 
-                }
-            // unpause
-            } else {
-                self.running = true; 
-                self.game.player.canShoot = true;
-                $("#pauseMenu").hide(); 
-                $("#pauseButton").text("Pause"); 
-                $("#pauseButton").css("background-color", "#7fcf0e"); 
-                $("#playBoard").css("cursor", "none"); 
-                $("#crossHair").show(); 
-                if (self.reloadInterrupted == true) {
-                    self.handleReload(); 
-                    self.reloadInterrupted = false; 
-                }
-            }
-        }); 
-
-        $("#volUp").on("click", function() {
-            if (self.volume <= 95) {
-                self.volume += 5; 
-                self.setAndShowVol();
-            } 
-            if (self.muted == true) {
-                self.muted = false; 
-            }
-            $("#volMute").text("Mute"); 
-        }); 
-        $("#volDown").on("click", function() {
-            if (self.volume >= 5) {
-                self.volume -= 5; 
-                self.setAndShowVol(); 
-                if (self.volume == 0) {
-                    self.muted = true; 
-                    $("#volMute").text("Unmute"); 
-                }
-            } 
-        });
-        $("#volMute").on("click", function() {
-            if (self.muted == false) {
-                self.muted = true; 
-                self.volume = 0; 
-                self.setAndShowVol(); 
-                $("#volMute").text("Unmute"); 
-            } else {
-                self.muted = false; 
-                self.volume = 5; 
-                self.setAndShowVol(); 
-                $("#volMute").text("Mute"); 
-            }
-        }); 
-        this.setAndShowVol = function() {
-            var audio = document.getElementsByClassName("hiddenAudio");
-            for (var i = 0; i < audio.length; i ++) {
-                audio.item(i).volume = self.volume / 100; 
-            }
-            $("#vol").text(self.volume + "%");
-        }
-        $("#unpauseButton").on("click", function() {
-            self.running = true; 
-            self.game.player.canShoot = true;
-            $("#pauseMenu").hide(); 
-            $("#pauseButton").text("Pause"); 
-            $("#pauseButton").css("background-color", "#7fcf0e"); 
-            $("#playBoard").css("cursor", "none"); 
-            $("#crossHair").show(); 
-            if (self.reloadInterrupted == true) {
-                self.handleReload(); 
-                self.reloadInterrupted = false; 
-            }
-        });
-        $("#quitButton").on("click", function() {
-            self.game.strikes = 4; 
-            self.running = true; 
-            self.game.player.canShoot = true;
-            $("#pauseMenu").hide(); 
-            $("#pauseButton").text("Pause"); 
-            $("#pauseButton").css("background-color", "#7fcf0e"); 
-            $("#playBoard").css("cursor", "none"); 
-            $("#crossHair").show(); 
-        });
-
 
     }
+
+    this.setAndShowVol = function() {
+        var audio = document.getElementsByClassName("hiddenAudio");
+        for (var i = 0; i < audio.length; i ++) {
+            audio.item(i).volume = currentUI.volume / 100; 
+        }
+        $("#vol").text(currentUI.volume + "%");
+    }
+
 
     this.playAgain = function() {
         var startClock = window.setInterval(function(){

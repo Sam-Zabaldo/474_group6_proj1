@@ -170,7 +170,7 @@ var duckHuntNormStart = function () {
 //begins alternate game if we want to do this
 var duckHuntAltStart = function () {
     $(menuLayer).hide();
-
+    //$(".ammoBox").toggle();
     $(minigunBox).toggle();
     $(crossHair).toggle();
 

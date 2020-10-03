@@ -292,6 +292,18 @@ button {
     border-style: solid;
      
 }
+
+#minugunAmmoBox{
+    /*margin-right: -;*/
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-content: center;
+    display: flex;
+    border-color : transparent;
+    border-width: 5px;
+    border-style: solid;
+     
+}
 .ammoIcon{
     margin: 2px;
     height: 90%;

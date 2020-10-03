@@ -5,6 +5,7 @@ var easyHuntUI=function(){
     this.coordinateOffset = 10;
     this.reloadInterrupted = false; 
     this.isFiring = false;
+    //$(".ammoBox").hide();
 
     this.initialize=function(){
         self.game = new easyHuntScene();
@@ -63,7 +64,7 @@ var easyHuntUI=function(){
         $('body').keypress(function(event){
             if (self.running == true) {
                 if (event.which==114){
-                        self.handleReload();
+                        //self.handleReload();
                         
                     }
             }
@@ -136,7 +137,7 @@ var easyHuntUI=function(){
                 $('#ammo' + i).attr("src", "./images/ammo-used-crop.png");
             }
             else{
-                $('#ammo' + i).attr("src", "./images/ammo-crop.png");
+                $('#ammo' + i).attr("src", "./images/minigunammo.png");
             }
         }
     }
@@ -148,7 +149,7 @@ var easyHuntUI=function(){
         //console.log("ROUND OVER >>>>>>>>>");
         $("#roundComplete").fadeIn("fast");
         setTimeout(() => {
-            self.updateAmmoIcon(6); 
+            //self.updateAmmoIcon(6); 
             self.updateStrikeIcon(0);
             $("#roundComplete").fadeOut("slow");
             //console.log("ROUND START >>>>>>>>>");

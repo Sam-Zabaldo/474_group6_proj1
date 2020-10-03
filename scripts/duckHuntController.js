@@ -133,7 +133,7 @@ setAndShowVol = function() {
 //starts the menu
 duckHuntMenuStart = function () {
 
-    document.getElementById("minugunAmmoBox").style.display = 'none';
+    //document.getElementById("minugunAmmoBox").style.display = 'none';
     $(gunBox).hide();
     $(minigunBox).hide();
     $(crossHair).hide();

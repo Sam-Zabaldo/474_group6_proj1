@@ -133,7 +133,7 @@ setAndShowVol = function() {
 //starts the menu
 duckHuntMenuStart = function () {
 
-
+    document.getElementById("minugunAmmoBox").style.display = 'none';
     $(gunBox).hide();
     $(minigunBox).hide();
     $(crossHair).hide();
@@ -148,6 +148,7 @@ duckHuntMenuStart = function () {
 //begins normal game
 var duckHuntNormStart = function () {
     document.getElementById("ammoBox").style.display = 'block';
+    document.getElementById("minigunAmmoBox").style.display = 'none';
 
     $(menuLayer).hide();
 
@@ -171,11 +172,11 @@ var duckHuntNormStart = function () {
 //begins alternate game if we want to do this
 var duckHuntAltStart = function () {
     $(menuLayer).hide();
-    //$(".ammoBox").toggle();
     $(minigunBox).toggle();
     $(crossHair).toggle();
-    //document.getElementById("ammoBox").innerHTML="";
     document.getElementById("ammoBox").style.display = 'none';
+    document.getElementById("minigunAmmoBox").style.display = 'block';
+    
 
     console.log("alt game start");
 

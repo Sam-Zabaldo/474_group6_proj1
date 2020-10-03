@@ -112,6 +112,14 @@ var duckHuntControllerStart = function() {
         $("#crossHair").show(); 
     });
 
+    $(document).keydown(function(e){
+        if((e.keyCode == 27) && (currentUI != null) && (currentUI.running == true)){
+            $(pauseButton).click();
+        }
+        else if ($("#pauseMenu").is(":visible")){
+            $(unpauseButton).click();
+        }
+     });
 }
 
 setAndShowVol = function() {

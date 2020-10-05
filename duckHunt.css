@@ -308,6 +308,7 @@ button {
     margin: 2px;
     height: 90%;
     width: auto;
+    display: none; 
 }
 
 #roundNumber{

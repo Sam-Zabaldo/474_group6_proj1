@@ -24,7 +24,7 @@ var easyHuntScene = function(){
         }
     }
    
-    this.player = new player(this);
+    this.player = new easyPlayer(this);
 
     this.list = [];
    
@@ -156,7 +156,7 @@ var easyHuntScene = function(){
     this.initialize();
 }
 
-var player = function(game){
+var easyPlayer = function(game){
     this.reloading = false;
     var self=this;
     this.game = game;

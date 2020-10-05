@@ -200,7 +200,7 @@ var duckHuntAltStart = function () {
 var duckHuntAdviceStart = function () {
 
     $(menuLayer).hide();
-
+    $("#pauseButton").attr("disabled", true);
     $(roundNumber).css({
         "border-color":"red"
     });
@@ -216,10 +216,14 @@ var duckHuntAdviceStart = function () {
 
     $(adviceLayer).show();
 
+    $(".ammoIcon").show(); 
+    $("#ammoBox").show(); 
+    $("#minigunAmmoBox").hide(); 
+
 }
 
 var duckHuntAdviceEnd = function() {
-
+    $("#pauseButton").removeAttr("disabled");
     $(adviceLayer).hide();
 
     $(roundNumber).css({
@@ -233,6 +237,9 @@ var duckHuntAdviceEnd = function() {
     });
 
     $(menuLayer).show();
+
+    $(".ammoIcon").hide(); 
+    $("#ammoBox").hide();
 
 }
 

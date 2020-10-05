@@ -70,7 +70,7 @@ var easyHuntUI=function(){
             }
         });
         
-        $("html").mousedown(function(e){
+        $("#playBoard").mousedown(function(e){
             if (self.running == true) {
                 console.log("begin firing");
                 self.isFiring = true;

@@ -195,7 +195,7 @@ var duckHuntAltStart = function () {
 var duckHuntAdviceStart = function () {
 
     $(menuLayer).hide();
-
+    $("#pauseButton").attr("disabled", true);
     $(roundNumber).css({
         "border-color":"red"
     });
@@ -214,7 +214,7 @@ var duckHuntAdviceStart = function () {
 }
 
 var duckHuntAdviceEnd = function() {
-
+    $("#pauseButton").removeAttr("disabled");
     $(adviceLayer).hide();
 
     $(roundNumber).css({

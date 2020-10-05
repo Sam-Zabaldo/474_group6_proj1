@@ -268,10 +268,10 @@ var player = function(game){
 
     this.handleHit = function(name, div){
         if(name.includes("eagle")){
-            div.setAttribute("src", "./images/deadeagle.png");
+            div.setAttribute("src", "./images/swisseagle.png");
         }
         if(name.includes("goose")){
-            div.setAttribute("src", "./images/deadgoose.png");
+            div.setAttribute("src", "./images/swissgoose.png");
         }
     }
 }

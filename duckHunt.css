@@ -310,6 +310,18 @@ button {
     width: auto;
     display: none; 
 }
+.xIcon{
+    margin: 4px;
+    height: 70%;
+    width: auto;
+    display: none; 
+}
+.infinityIcon{
+    margin: 4px;
+    height: 70%;
+    width: auto;
+    display: none; 
+}
 
 #roundNumber{
     color: white;

@@ -178,6 +178,8 @@ var duckHuntAltStart = function () {
     document.getElementById("ammoBox").style.display = 'none';
     document.getElementById("minigunAmmoBox").style.display = 'block';
     $(".ammoIcon").show(); 
+    $(".xIcon").show(); 
+    $(".infinityIcon").show(); 
     
 
     console.log("alt game start");

@@ -214,6 +214,10 @@ var duckHuntAdviceStart = function () {
 
     $(adviceLayer).show();
 
+    $(".ammoIcon").show(); 
+    $("#ammoBox").show(); 
+    $("#minigunAmmoBox").hide(); 
+
 }
 
 var duckHuntAdviceEnd = function() {
@@ -231,6 +235,9 @@ var duckHuntAdviceEnd = function() {
     });
 
     $(menuLayer).show();
+
+    $(".ammoIcon").hide(); 
+    $("#ammoBox").hide();
 
 }
 

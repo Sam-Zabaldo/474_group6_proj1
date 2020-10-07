@@ -53,6 +53,7 @@ var duckHuntScene = function(){
         //Set game attributes to default values
         self.player.ammo = 6;
         self.list = [];
+        this.minTicksBetweenSpawn = 100;
         self.ticksSinceSpawn = 0;
         self.strikes = 0;
         self.round = 1;
